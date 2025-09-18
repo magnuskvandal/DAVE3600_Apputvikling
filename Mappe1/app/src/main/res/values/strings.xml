@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">matteapp_s356228</string>
-    <string name="intro">Mattespill</string>
+    <string name="tittel">Mattespill</string>
     <string name="startSpill">Start spill</string>
     <string name ="omSpillet">Om spillet</string>
     <string name="preferanser">Preferanser</string>
+    <string name="navigertilbake">Tilbake</string>
 </resources>
