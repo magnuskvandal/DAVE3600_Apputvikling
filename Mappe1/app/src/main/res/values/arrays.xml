@@ -6,16 +6,16 @@
         <item>25 + 15</item>
         <item>10 + 55</item>
         <item>4 + 9</item>
-        <item>8 - 6</item>
-        <item>10 - 3</item>
-        <item>20 - 14</item>
-        <item>35 - 8</item>
-        <item>19 - 7</item>
-        <item>2 * 4</item>
-        <item>3 * 8</item>
-        <item>2 * 5</item>
-        <item>6 * 5</item>
-        <item>10*10</item>
+        <item>5 + 5</item>
+        <item>3 + 2</item>
+        <item>9 + 6</item>
+        <item>6 + 6</item>
+        <item>10 + 10</item>
+        <item>15 + 12</item>
+        <item>14 + 16</item>
+        <item>9 + 8</item>
+        <item>23 + 8</item>
+        <item>100 + 23</item>
     </string-array>
     <integer-array name="svar">
         <item>18</item>
@@ -23,15 +23,15 @@
         <item>40</item>
         <item>65</item>
         <item>13</item>
-        <item>2</item>
-        <item>7</item>
-        <item>6</item>
-        <item>27</item>
-        <item>12</item>
-        <item>8</item>
-        <item>24</item>
         <item>10</item>
+        <item>5</item>
+        <item>15</item>
+        <item>12</item>
+        <item>20</item>
+        <item>27</item>
         <item>30</item>
-        <item>100</item>
+        <item>17</item>
+        <item>31</item>
+        <item>123</item>
     </integer-array>
 </resources>
