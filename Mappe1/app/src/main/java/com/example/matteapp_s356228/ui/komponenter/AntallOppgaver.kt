@@ -70,7 +70,8 @@ fun AntallOppgaver(
                     Spacer(modifier = Modifier.width(width = 8.dp))
                     Text(
                         text = antall.toString(),
-                        style = MaterialTheme.typography.titleLarge
+                        style = MaterialTheme.typography.headlineMedium,
+                        fontWeight = FontWeight.Bold
                     )
                 }
             }

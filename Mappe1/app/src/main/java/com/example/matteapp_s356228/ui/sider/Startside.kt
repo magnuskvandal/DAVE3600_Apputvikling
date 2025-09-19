@@ -1,6 +1,5 @@
 package com.example.matteapp_s356228.ui.sider
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,7 +8,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Calculate
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -25,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import com.example.matteapp_s356228.R
 import com.example.matteapp_s356228.ui.komponenter.Navigasjonskort
 import com.example.matteapp_s356228.ui.theme.Matteapp_s356228Theme
+
 
 @Composable
 fun Startside(modifier: Modifier = Modifier) {
@@ -51,7 +51,7 @@ fun Startside(modifier: Modifier = Modifier) {
 
             Navigasjonskort(
                 tekst = stringResource(R.string.startSpill),
-                ikon = Icons.Filled.PlayArrow,
+                ikon = Icons.Filled.Calculate,
                 onClick = {}
             )
 
