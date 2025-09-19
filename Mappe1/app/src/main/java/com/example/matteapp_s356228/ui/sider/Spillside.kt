@@ -2,7 +2,6 @@ package com.example.matteapp_s356228.ui.sider
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -10,6 +9,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.matteapp_s356228.ui.komponenter.TopBar
 import com.example.matteapp_s356228.ui.theme.Matteapp_s356228Theme
 import com.example.matteapp_s356228.R
+import com.example.matteapp_s356228.ui.komponenter.Spillpanel
 
 @Composable
 fun Spillside(
@@ -19,7 +19,7 @@ fun Spillside(
         modifier = modifier,
         topBar = { TopBar(tittel = stringResource(R.string.tittel), onNavigateBack = { /*TODO*/ }) }
     ){ innerPadding ->
-        Text(text ="midlertidig tekst" , modifier = Modifier.padding(innerPadding))
+        Spillpanel(modifier = Modifier.padding(innerPadding))
     }
 }
 

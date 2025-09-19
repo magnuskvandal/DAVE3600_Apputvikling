@@ -55,7 +55,7 @@ fun Startside(modifier: Modifier = Modifier) {
                 onClick = {}
             )
 
-            Spacer(modifier = Modifier.height(25.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
             Navigasjonskort(
                 tekst = stringResource(R.string.omSpillet),
@@ -63,7 +63,7 @@ fun Startside(modifier: Modifier = Modifier) {
                 onClick = {}
             )
 
-            Spacer(modifier = Modifier.height(25.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
             Navigasjonskort(
                 tekst = stringResource(R.string.preferanser),

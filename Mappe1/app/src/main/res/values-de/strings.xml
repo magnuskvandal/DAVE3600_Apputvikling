@@ -3,7 +3,12 @@
     <string name="app_name">matteapp_s356228</string>
     <string name="tittel">Mathe-Spiel</string>
     <string name="startSpill">Spiel starten</string>
-    <string name="omSpillet">über das Spiel</string>
+    <string name="omSpillet">Über das Spiel</string>
     <string name="preferanser">Präferenzen</string>
     <string name="navigertilbake">Zurück</string>
+    <string name="neste">Weiter</string>
+    <string name="tømSvar">Leeren</string>
+    <string name="rettSvar">Richtig!</string>
+    <string name="feilSvar">Falsch!</string>
+    <string name="sjekkSvar">Antwort überprüfen</string>
 </resources>

@@ -5,4 +5,20 @@
     <string name ="omSpillet">Om spillet</string>
     <string name="preferanser">Preferanser</string>
     <string name="navigertilbake">Tilbake</string>
+    <string name="nummer_0" translatable="false">0</string>
+    <string name="nummer_1" translatable="false">1</string>
+    <string name="nummer_2" translatable="false">2</string>
+    <string name="nummer_3" translatable="false">3</string>
+    <string name="nummer_4" translatable="false">4</string>
+    <string name="nummer_5" translatable="false">5</string>
+    <string name="nummer_6" translatable="false">6</string>
+    <string name="nummer_7" translatable="false">7</string>
+    <string name="nummer_8" translatable="false">8</string>
+    <string name="nummer_9" translatable="false">9</string>
+    <string name="sjekkSvar">Sjekk svar</string>
+    <string name="neste">Neste</string>
+    <string name="tømSvar">Tøm</string>
+    <string name="slettTall" translatable="false">⌫</string>
+    <string name="rettSvar">Riktig!</string>
+    <string name="feilSvar">Feil!</string>
 </resources>
