@@ -21,4 +21,5 @@
     <string name="slettTall" translatable="false">⌫</string>
     <string name="rettSvar">Riktig!</string>
     <string name="feilSvar">Feil!</string>
+    <string name="antallOppgaver">Antall oppgaver per spill</string>
 </resources>
