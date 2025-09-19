@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -118,6 +119,7 @@ fun Tallpanelknapp(
     tekst: String,
     onClick: () -> Unit,
     knappfarge: Color = MaterialTheme.colorScheme.surface,
+    textStyle : TextStyle = MaterialTheme.typography.headlineLarge,
 ){
     Button(
         onClick= onClick,
@@ -136,7 +138,7 @@ fun Tallpanelknapp(
     ){
         Text(
             text = tekst,
-            style = MaterialTheme.typography.headlineSmall,
+            style = textStyle,
             fontWeight = FontWeight.ExtraBold
         )
     }
@@ -188,8 +190,9 @@ fun Tallpanel(
                 tekst = stringResource(R.string.tømSvar),
                 onClick = onTomKlikk,
                 modifier = knappeModifier,
+                textStyle = MaterialTheme.typography.titleMedium
             )
-            Tallpanelknapp(tekst = "0", onClick = { onSifferKlikk("0") }, modifier = knappeModifier)
+            Tallpanelknapp(tekst = stringResource(R.string.nummer_0), onClick = { onSifferKlikk("0") }, modifier = knappeModifier)
             Tallpanelknapp(
                 tekst = stringResource(R.string.slettTall),
                 onClick = onSlettKlikk,
