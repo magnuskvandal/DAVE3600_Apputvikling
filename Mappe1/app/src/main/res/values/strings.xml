@@ -22,4 +22,7 @@
     <string name="rettSvar">Riktig!</string>
     <string name="feilSvar">Feil!</string>
     <string name="antallOppgaver">Antall oppgaver per spill</string>
+    <string name="antallOppgaver5" translatable="false">5</string>
+    <string name="antallOppgaver10" translatable="false">10</string>
+    <string name="antallOppgaver15" translatable="false">15</string>
 </resources>

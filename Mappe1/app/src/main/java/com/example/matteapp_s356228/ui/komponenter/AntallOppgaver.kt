@@ -24,12 +24,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.matteapp_s356228.R
+import com.example.matteapp_s356228.ui.modeller.AntallOppgaverValg
 
 @Composable
 fun AntallOppgaver(
     modifier: Modifier = Modifier,
     valgtAntall: Int,
-    tilgjengeligeAntall: List<Int>,
+    tilgjengeligeAntall: List<AntallOppgaverValg>,
     onAntallValgt: (Int) -> Unit
     ){
     Column(
@@ -54,22 +55,22 @@ fun AntallOppgaver(
                         .fillMaxWidth()
                         .padding(vertical = 8.dp)
                         .selectable(
-                            selected = (antall == valgtAntall),
-                            onClick = { onAntallValgt(antall) },
+                            selected = (antall.verdi == valgtAntall),
+                            onClick = { onAntallValgt(antall.verdi) },
                             role = Role.RadioButton
                         ),
                     verticalAlignment = Alignment.CenterVertically,
                 ){
                     RadioButton(
-                        selected = (antall == valgtAntall),
-                        onClick = { onAntallValgt(antall) },
+                        selected = (antall.verdi == valgtAntall),
+                        onClick = { onAntallValgt(antall.verdi) },
                         modifier = Modifier
                             .size(size = 50.dp)
                             .scale(scale = 1.3f)
                     )
                     Spacer(modifier = Modifier.width(width = 8.dp))
                     Text(
-                        text = antall.toString(),
+                        text = stringResource(id = antall.visningsnavnResId),
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold
                     )
@@ -89,7 +90,11 @@ fun AntallOppgaver(
 fun AntallOppgaverPreview() {
     AntallOppgaver(
         valgtAntall = 10,
-        tilgjengeligeAntall = listOf(5, 10, 20, 30, 40, 50),
+        tilgjengeligeAntall = listOf(
+            AntallOppgaverValg(5, R.string.antallOppgaver5),
+            AntallOppgaverValg(10, R.string.antallOppgaver10),
+            AntallOppgaverValg(15, R.string.antallOppgaver15)
+        ),
         onAntallValgt = {}
     )
 }

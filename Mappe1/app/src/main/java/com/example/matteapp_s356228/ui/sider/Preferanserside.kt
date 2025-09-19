@@ -20,6 +20,7 @@ import com.example.matteapp_s356228.ui.komponenter.TopBar
 import com.example.matteapp_s356228.ui.theme.Matteapp_s356228Theme
 import com.example.matteapp_s356228.R
 import com.example.matteapp_s356228.ui.komponenter.AntallOppgaver
+import com.example.matteapp_s356228.ui.modeller.AntallOppgaverValg
 
 @Composable
 fun Preferanserside(
@@ -27,7 +28,11 @@ fun Preferanserside(
 ){
     // Midlertidig state management for valgt antall oppgaver
     var valgtAntallState by remember { mutableStateOf(5) }
-    val muligeAntall = listOf(5, 10, 15)
+    val muligeAntall : List<AntallOppgaverValg> = listOf(
+    AntallOppgaverValg(5, R.string.antallOppgaver5),
+    AntallOppgaverValg(10, R.string.antallOppgaver10),
+    AntallOppgaverValg(15, R.string.antallOppgaver15)
+    )
 
     Scaffold(
         modifier = modifier,

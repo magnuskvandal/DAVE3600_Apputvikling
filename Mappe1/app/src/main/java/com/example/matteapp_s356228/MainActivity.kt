@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.matteapp_s356228.ui.sider.Preferanserside
 import com.example.matteapp_s356228.ui.sider.Spillside
 import com.example.matteapp_s356228.ui.sider.Startside
 import com.example.matteapp_s356228.ui.theme.Matteapp_s356228Theme
@@ -21,7 +22,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Matteapp_s356228Theme(dynamicColor = false) {
-                Spillside()
+                Preferanserside()
             }
         }
     }
