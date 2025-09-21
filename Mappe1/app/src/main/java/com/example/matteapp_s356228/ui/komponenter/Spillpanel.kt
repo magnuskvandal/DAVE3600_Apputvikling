@@ -1,4 +1,5 @@
 package com.example.matteapp_s356228.ui.komponenter
+import androidx.annotation.StringRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -31,7 +32,7 @@ import com.example.matteapp_s356228.ui.theme.Matteapp_s356228Theme
 import com.example.matteapp_s356228.R
 
 @Composable
-fun Spillpanel(
+fun Spillpanel( // Må endre denne parameterlisten når vi kobler til ViewModel
     modifier: Modifier = Modifier,
 ) {
     Card(
@@ -53,7 +54,7 @@ fun Spillpanel(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Display(oppgavetekst = "12 + 8", svartekst = "20", rettSvar = false, score = "3/5")
+            Display(oppgavetekst = "12 + 8", svartekst = "20", rettSvar = false, fremdrift = 1, antallOppgaver = 5, modifier = Modifier)
             Spacer(modifier = Modifier.height(8.dp))
             Tallpanel(
                 onSifferKlikk = { /*TODO*/ },
@@ -208,7 +209,8 @@ fun Display(
     oppgavetekst: String,
     svartekst: String,
     rettSvar: Boolean,
-    score: String
+    fremdrift: Int,
+    antallOppgaver: Int
 ) {
     Box(
         modifier = modifier
@@ -245,7 +247,7 @@ fun Display(
             )
         }
         Text(
-            text = score,
+            text = stringResource(R.string.fremdrift, fremdrift, antallOppgaver), // denne må endres til å hente fra strings.xml senere
             style = MaterialTheme.typography.headlineSmall,
             color = MaterialTheme.colorScheme.onBackground,
             fontWeight = FontWeight.Bold,
@@ -253,6 +255,8 @@ fun Display(
         )
     }
 }
+
+
 
 @Preview(showBackground = true, backgroundColor = 0xFFC8E6C9)
 @Composable
@@ -262,7 +266,8 @@ fun ProblemDisplayDesignPreview() {
             oppgavetekst = "123 x 45",
             svartekst = "5535",
             rettSvar = true,
-            score = "5/5"
+            fremdrift = 4,
+            antallOppgaver = 10
         )
     }
 }
@@ -276,7 +281,8 @@ fun ProblemDisplayDesignOnBackgroundPreview() {
                 oppgavetekst = "12 + 8",
                 svartekst = "",
                 rettSvar = false,
-                score = "3/5"
+                fremdrift = 1,
+                antallOppgaver = 5
             )
         }
     }
