@@ -49,28 +49,28 @@ fun AntallOppgaver(
         Column(
             modifier = Modifier.selectableGroup()
         ){
-            tilgjengeligeAntall.forEach{ antall ->
+            tilgjengeligeAntall.forEach{ valg ->
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = 8.dp)
                         .selectable(
-                            selected = (antall.verdi == valgtAntall),
-                            onClick = { onAntallValgt(antall.verdi) },
+                            selected = (valg.verdi == valgtAntall),
+                            onClick = { onAntallValgt(valg.verdi) },
                             role = Role.RadioButton
                         ),
                     verticalAlignment = Alignment.CenterVertically,
                 ){
                     RadioButton(
-                        selected = (antall.verdi == valgtAntall),
-                        onClick = { onAntallValgt(antall.verdi) },
+                        selected = (valg.verdi == valgtAntall),
+                        onClick = { onAntallValgt(valg.verdi) },
                         modifier = Modifier
                             .size(size = 50.dp)
                             .scale(scale = 1.3f)
                     )
                     Spacer(modifier = Modifier.width(width = 8.dp))
                     Text(
-                        text = stringResource(id = antall.visningsnavnResId),
+                        text = stringResource(id = valg.visningsnavnResId),
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold
                     )
