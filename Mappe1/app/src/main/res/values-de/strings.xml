@@ -12,4 +12,5 @@
     <string name="feilSvar">Falsch!</string>
     <string name="sjekkSvar">Antwort überprüfen</string>
     <string name="antallOppgaver">Anzahl der Aufgaben pro Spiel</string>
+    <string name="startNyttSpill">Neues Spiel starten</string>
 </resources>

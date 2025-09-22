@@ -27,7 +27,8 @@ fun Display(
     svartekst: String,
     rettSvar: Boolean,
     fremdrift: Int,
-    antallOppgaver: Int
+    antallOppgaver: Int,
+    svarSjekket: Boolean
 ) {
     Box(
         modifier = modifier
@@ -54,7 +55,7 @@ fun Display(
         val tilbakemeldingsfarge = if (rettSvar) Color(0xFF4CAF50) else Color(0xFFF44336)
         val tilbakemeldingstekst = if (rettSvar) stringResource(R.string.rettSvar) else stringResource(R.string.feilSvar)
         // Denne betingelsen må endres senere for å vise tilbakemelding bare når brukeren har svart
-        if(true){
+        if(svarSjekket){
             Text(
                 text = tilbakemeldingstekst,
                 style = MaterialTheme.typography.headlineMedium,
@@ -83,7 +84,8 @@ fun DisplayPreview() {
                 svartekst = "",
                 rettSvar = false,
                 fremdrift = 1,
-                antallOppgaver = 5
+                antallOppgaver = 5,
+                svarSjekket = false
             )
         }
     }
@@ -98,7 +100,8 @@ fun DisplayPreview2() {
             svartekst = "5535",
             rettSvar = true,
             fremdrift = 4,
-            antallOppgaver = 10
+            antallOppgaver = 10,
+            svarSjekket = true
         )
     }
 }
