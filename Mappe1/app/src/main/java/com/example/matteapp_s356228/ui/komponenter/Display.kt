@@ -31,6 +31,8 @@ fun Display(
     svarSjekket: Boolean,
     score: Int
 ) {
+    val tilbakemeldingsfarge = if (rettSvar) Color(0xFF4CAF50) else Color(0xFFF44336)
+    val tilbakemeldingstekst = if (rettSvar) stringResource(R.string.rettSvar) else stringResource(R.string.feilSvar)
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -46,13 +48,16 @@ fun Display(
             )
             .padding(vertical = 8.dp, horizontal = 12.dp),
     ) {
-        Text(
-            text = stringResource(R.string.riktigeSvar, score),
-            style = MaterialTheme.typography.headlineSmall,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.align(Alignment.TopStart)
-        )
+        if(score > 0){
+            Text(
+                text = stringResource(R.string.riktigeSvar, score),
+                style = MaterialTheme.typography.headlineSmall,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
+                modifier = Modifier.align(Alignment.TopStart)
+            )
+        }
+
         Text(
             text = "$oppgavetekst = $svartekst",
             style = MaterialTheme.typography.displaySmall,
@@ -62,8 +67,6 @@ fun Display(
                 .align(Alignment.Center)
                 .padding(vertical = 75.dp)
         )
-        val tilbakemeldingsfarge = if (rettSvar) Color(0xFF4CAF50) else Color(0xFFF44336)
-        val tilbakemeldingstekst = if (rettSvar) stringResource(R.string.rettSvar) else stringResource(R.string.feilSvar)
 
         if(svarSjekket){
             Text(
@@ -77,7 +80,7 @@ fun Display(
         Text(
             text = stringResource(R.string.fremdrift, fremdrift, antallOppgaver),
             style = MaterialTheme.typography.headlineSmall,
-            color = MaterialTheme.colorScheme.onBackground,
+            color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
             fontWeight = FontWeight.Bold,
             modifier = Modifier.align(Alignment.TopEnd)
         )
