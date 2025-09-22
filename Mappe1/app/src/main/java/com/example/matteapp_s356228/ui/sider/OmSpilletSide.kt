@@ -7,17 +7,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import com.example.matteapp_s356228.ui.komponenter.TopBar
 import com.example.matteapp_s356228.ui.theme.Matteapp_s356228Theme
 import com.example.matteapp_s356228.R
 
 @Composable
 fun OmSpilletSide(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onNavigerTilbake: () -> Unit
 ){
     Scaffold(
         modifier = modifier,
-        topBar = { TopBar(tittel = stringResource(R.string.omSpillet), onNavigateBack = { /*TODO*/ }) }
+        topBar = {
+            TopBar(
+                tittel = stringResource(R.string.omSpillet),
+                onNavigerTilbake = onNavigerTilbake
+            )
+        }
     ){ innerPadding ->
         Text(text ="midlertidig tekst" , modifier = Modifier.padding(innerPadding))
     }
@@ -29,6 +36,6 @@ fun OmSpilletSide(
 @Composable
 fun OmSpilletSidePreview() {
     Matteapp_s356228Theme(dynamicColor = false) {
-        OmSpilletSide()
+        //OmSpilletSide()
     }
 }

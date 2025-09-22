@@ -19,15 +19,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.matteapp_s356228.R
 import com.example.matteapp_s356228.ui.komponenter.Navigasjonskort
-import com.example.matteapp_s356228.ui.theme.Matteapp_s356228Theme
+import com.example.matteapp_s356228.ui.navigasjon.Ruter
 
 
 @Composable
-fun Startside(modifier: Modifier = Modifier) {
+fun Startside(
+    modifier: Modifier = Modifier,
+    onNavigerTil: (String) -> Unit
+) {
     Surface(
         modifier = modifier
             .fillMaxSize()
@@ -52,7 +54,7 @@ fun Startside(modifier: Modifier = Modifier) {
             Navigasjonskort(
                 tekst = stringResource(R.string.startSpill),
                 ikon = Icons.Filled.Calculate,
-                onClick = {}
+                onClick = { onNavigerTil(Ruter.Spillside.name)}
             )
 
             Spacer(modifier = Modifier.height(20.dp))
@@ -60,7 +62,7 @@ fun Startside(modifier: Modifier = Modifier) {
             Navigasjonskort(
                 tekst = stringResource(R.string.omSpillet),
                 ikon = Icons.Filled.Info,
-                onClick = {}
+                onClick = { onNavigerTil(Ruter.OmSpillet.name) }
             )
 
             Spacer(modifier = Modifier.height(20.dp))
@@ -68,17 +70,9 @@ fun Startside(modifier: Modifier = Modifier) {
             Navigasjonskort(
                 tekst = stringResource(R.string.preferanser),
                 ikon = Icons.Filled.Settings,
-                onClick = {}
+                onClick = {onNavigerTil(Ruter.Preferanser.name)}
             )
         }
     }
 }
 
-
-@Preview(showBackground = true, heightDp = 919, widthDp = 409)
-@Composable
-fun StartsidePreview(){
-    Matteapp_s356228Theme(dynamicColor = false){
-        Startside()
-    }
-}

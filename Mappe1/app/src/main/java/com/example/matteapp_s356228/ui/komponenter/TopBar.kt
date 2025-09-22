@@ -21,7 +21,7 @@ import com.example.matteapp_s356228.ui.theme.Matteapp_s356228Theme
 fun TopBar(
     modifier: Modifier = Modifier,
     tittel: String,
-    onNavigateBack: () -> Unit
+    onNavigerTilbake: () -> Unit
 ) {
     CenterAlignedTopAppBar(
         modifier = modifier,
@@ -33,7 +33,7 @@ fun TopBar(
             )
         },
         navigationIcon = {
-            IconButton(onClick = onNavigateBack) {
+            IconButton(onClick = onNavigerTilbake) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = stringResource(R.string.navigertilbake)
@@ -49,7 +49,7 @@ fun StandardTopBarPreview() {
     Matteapp_s356228Theme(dynamicColor = false) {
         TopBar(
             tittel = "Eksempeltittel",
-            onNavigateBack = {}
+            onNavigerTilbake = {}
         )
     }
 }

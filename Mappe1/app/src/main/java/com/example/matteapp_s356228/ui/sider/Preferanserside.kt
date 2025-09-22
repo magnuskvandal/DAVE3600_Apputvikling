@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.matteapp_s356228.ui.komponenter.TopBar
 import com.example.matteapp_s356228.R
 import com.example.matteapp_s356228.ui.komponenter.AntallOppgaver
@@ -18,12 +19,18 @@ import com.example.matteapp_s356228.ui.viewmodels.PreferanserViewModel
 @Composable
 fun Preferanserside(
     modifier: Modifier = Modifier,
-    viewModel: PreferanserViewModel = viewModel()
+    viewModel: PreferanserViewModel = viewModel(),
+    onNavigerTilbake: () -> Unit
 ){
 
     Scaffold(
         modifier = modifier,
-        topBar = { TopBar(tittel = stringResource(R.string.preferanser), onNavigateBack = { /*TODO*/ }) }
+        topBar = {
+            TopBar(
+                tittel = stringResource(R.string.preferanser),
+                onNavigerTilbake = onNavigerTilbake
+            )
+        }
     ){ innerPadding ->
         Column(
             modifier = Modifier

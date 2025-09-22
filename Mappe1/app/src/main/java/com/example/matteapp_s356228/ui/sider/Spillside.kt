@@ -20,6 +20,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.matteapp_s356228.ui.komponenter.TopBar
 import com.example.matteapp_s356228.ui.theme.Matteapp_s356228Theme
 import com.example.matteapp_s356228.R
@@ -33,14 +34,20 @@ import com.example.matteapp_s356228.ui.viewmodels.SpillViewModel
 @Composable
 fun Spillside(
     modifier: Modifier = Modifier,
-    viewModel: SpillViewModel = viewModel()
+    viewModel: SpillViewModel = viewModel(),
+    onNavigerTilbake: () -> Unit
 ){
     val uiState: SpillUiState by viewModel.uiState.collectAsState()
     val spilletFerdig = uiState.spillstatus == Spillstatus.FERDIG
     val sisteOppgave = !spilletFerdig && (uiState.nåværendeOppgave == uiState.antallOppgaver)
     Scaffold(
         modifier = modifier,
-        topBar = { TopBar(tittel = stringResource(R.string.tittel), onNavigateBack = { /*TODO*/ }) }
+        topBar = {
+            TopBar(
+            tittel = stringResource(R.string.tittel),
+            onNavigerTilbake = onNavigerTilbake
+            )
+        }
     ){ innerPadding ->
         Card(
             modifier = Modifier
@@ -108,15 +115,5 @@ fun Spillside(
             }
         }
 
-    }
-}
-
-
-
-@Preview(showBackground = true)
-@Composable
-fun SpillsidePreview() {
-    Matteapp_s356228Theme(dynamicColor = false) {
-        Spillside()
     }
 }
