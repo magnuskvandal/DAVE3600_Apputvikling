@@ -42,6 +42,7 @@ class SpillViewModel(application: Application): AndroidViewModel(application) {
             gjeldendeState -> gjeldendeState.copy(
                 oppgavetekst = aktivSpilløktOppgaver[gjeldendeOppgaveIndeks].tekst,
                 brukersvar = "",
+                antallOppgaver = aktivSpilløktOppgaver.size,
                 nåværendeOppgave = 1,
                 svarSjekket = false,
                 rettSvar = false,
@@ -114,12 +115,14 @@ class SpillViewModel(application: Application): AndroidViewModel(application) {
                 gjeldendeState -> gjeldendeState.copy(
                     rettSvar = false,
                     svarSjekket = true,
-                    spillstatus = if(sisteOppgave) Spillstatus.FERDIG else gjeldendeState.spillstatus
             )})
         }
     }
 
     fun nesteOppgave(){
+        if (_uiState.value.spillstatus == Spillstatus.FERDIG) {
+            return
+        }
         if(gjeldendeOppgaveIndeks < aktivSpilløktOppgaver.size - 1){
             gjeldendeOppgaveIndeks++
             _uiState.update(function = {
@@ -130,6 +133,12 @@ class SpillViewModel(application: Application): AndroidViewModel(application) {
                     rettSvar = false,
                     svarSjekket = false,
                     spillstatus = Spillstatus.PÅGÅR
+                )
+            })
+        }else{
+            _uiState.update(function = {
+                gjeldendeState -> gjeldendeState.copy(
+                    spillstatus = Spillstatus.FERDIG
                 )
             })
         }

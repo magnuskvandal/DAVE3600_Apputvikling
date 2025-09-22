@@ -11,7 +11,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -38,6 +37,7 @@ fun Spillside(
 ){
     val uiState: SpillUiState by viewModel.uiState.collectAsState()
     val spilletFerdig = uiState.spillstatus == Spillstatus.FERDIG
+    val sisteOppgave = !spilletFerdig && (uiState.nåværendeOppgave == uiState.antallOppgaver)
     Scaffold(
         modifier = modifier,
         topBar = { TopBar(tittel = stringResource(R.string.tittel), onNavigateBack = { /*TODO*/ }) }
@@ -84,15 +84,15 @@ fun Spillside(
                     tekst = stringResource(R.string.sjekkSvar),
                     onClick = { viewModel.sjekkSvar() },
                     knappfarge = MaterialTheme.colorScheme.primary,
-                    enabled = !uiState.rettSvar
+                    enabled = !uiState.rettSvar && !spilletFerdig
                 )
                 Spacer(modifier = Modifier.height(12.dp))
                 GenerellKnapp(
                     modifier = Modifier.fillMaxWidth(),
-                    tekst = if(!spilletFerdig){
-                        stringResource(R.string.neste)
-                    } else{
-                        stringResource(R.string.startNyttSpill)
+                    tekst = when{
+                        spilletFerdig -> stringResource(R.string.startNyttSpill)
+                        sisteOppgave -> "Avslutt spill"
+                        else -> stringResource(R.string.neste)
                     }
                     ,
                     onClick = {
