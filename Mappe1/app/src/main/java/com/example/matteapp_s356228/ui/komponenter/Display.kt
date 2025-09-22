@@ -28,7 +28,8 @@ fun Display(
     rettSvar: Boolean,
     fremdrift: Int,
     antallOppgaver: Int,
-    svarSjekket: Boolean
+    svarSjekket: Boolean,
+    score: Int
 ) {
     Box(
         modifier = modifier
@@ -37,7 +38,7 @@ fun Display(
             .border(BorderStroke(
                 width = 0.5.dp,
                 color = MaterialTheme.colorScheme.outline),
-                shape = MaterialTheme.shapes.medium
+                shape = MaterialTheme.shapes.medium,
             )
             .background(
                 color = MaterialTheme.colorScheme.background,
@@ -46,15 +47,24 @@ fun Display(
             .padding(vertical = 8.dp, horizontal = 12.dp),
     ) {
         Text(
+            text = stringResource(R.string.riktigeSvar, score),
+            style = MaterialTheme.typography.headlineSmall,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.onBackground,
+            modifier = Modifier.align(Alignment.TopStart)
+        )
+        Text(
             text = "$oppgavetekst = $svartekst",
             style = MaterialTheme.typography.displaySmall,
             color = MaterialTheme.colorScheme.onBackground,
             maxLines = 2,
-            modifier = Modifier.align(Alignment.Center)
+            modifier = Modifier
+                .align(Alignment.Center)
+                .padding(vertical = 75.dp)
         )
         val tilbakemeldingsfarge = if (rettSvar) Color(0xFF4CAF50) else Color(0xFFF44336)
         val tilbakemeldingstekst = if (rettSvar) stringResource(R.string.rettSvar) else stringResource(R.string.feilSvar)
-        // Denne betingelsen må endres senere for å vise tilbakemelding bare når brukeren har svart
+
         if(svarSjekket){
             Text(
                 text = tilbakemeldingstekst,
@@ -65,7 +75,7 @@ fun Display(
             )
         }
         Text(
-            text = stringResource(R.string.fremdrift, fremdrift, antallOppgaver), // denne må endres til å hente fra strings.xml senere
+            text = stringResource(R.string.fremdrift, fremdrift, antallOppgaver),
             style = MaterialTheme.typography.headlineSmall,
             color = MaterialTheme.colorScheme.onBackground,
             fontWeight = FontWeight.Bold,
@@ -85,7 +95,8 @@ fun DisplayPreview() {
                 rettSvar = false,
                 fremdrift = 1,
                 antallOppgaver = 5,
-                svarSjekket = false
+                svarSjekket = false,
+                score = 0
             )
         }
     }
@@ -101,7 +112,8 @@ fun DisplayPreview2() {
             rettSvar = true,
             fremdrift = 4,
             antallOppgaver = 10,
-            svarSjekket = true
+            svarSjekket = true,
+            score = 3
         )
     }
 }

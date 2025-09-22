@@ -69,7 +69,8 @@ fun Spillside(
                     fremdrift = uiState.nåværendeOppgave,
                     antallOppgaver = uiState.antallOppgaver,
                     modifier = Modifier,
-                    svarSjekket = uiState.svarSjekket
+                    svarSjekket = uiState.svarSjekket,
+                    score = uiState.score
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Tallpanel(
@@ -100,12 +101,13 @@ fun Spillside(
                         }else{
                             viewModel.nesteOppgave()
                         }
-                              },
+                    },
                     knappfarge = MaterialTheme.colorScheme.secondary,
                     enabled = true
                 )
             }
         }
+
     }
 }
 
