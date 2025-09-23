@@ -164,7 +164,6 @@ fun Spillside(
                         avbrytTekst = stringResource(R.string.nei)
                     )
                 }
-                }
                 BackHandler{
                     handleNavigerTilbake()
                 }
