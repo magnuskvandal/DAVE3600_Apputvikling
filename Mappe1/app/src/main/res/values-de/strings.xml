@@ -14,4 +14,11 @@
     <string name="antallOppgaver">Anzahl der Aufgaben pro Spiel</string>
     <string name="startNyttSpill">Neues Spiel starten</string>
     <string name="riktigeSvar">Richtige Antworten: %1$d</string>
+    <string name="spillFerdigTittel">Fertig!</string>
+    <string name="spillFerdigTekst">Sie haben %1$d von %2$d Aufgaben geschafft. Möchten Sie es noch einmal versuchen?</string>
+    <string name="ja">Ja</string>
+    <string name="nei">Nein</string>
+    <string name="avsluttRunde">Spielrunde beenden</string>
+    <string name="avbryteSpillTittel">Spielrunde abbrechen</string>
+    <string name="avbryteSpillTekst">Bist du sicher, dass du die Spielrunde abbrechen möchtest?</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.matteapp_s356228.ui.sider
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,6 +15,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -24,6 +28,7 @@ import androidx.navigation.NavController
 import com.example.matteapp_s356228.ui.komponenter.TopBar
 import com.example.matteapp_s356228.ui.theme.Matteapp_s356228Theme
 import com.example.matteapp_s356228.R
+import com.example.matteapp_s356228.ui.komponenter.Dialog
 import com.example.matteapp_s356228.ui.komponenter.Display
 import com.example.matteapp_s356228.ui.komponenter.GenerellKnapp
 import com.example.matteapp_s356228.ui.komponenter.Tallpanel
@@ -38,14 +43,24 @@ fun Spillside(
     onNavigerTilbake: () -> Unit
 ){
     val uiState: SpillUiState by viewModel.uiState.collectAsState()
+    val spillFerdigDialog: Boolean by viewModel.spillFerdigDialog.collectAsState()
+    val avbryteSpillDialog: Boolean by viewModel.avbryteSpillDialog.collectAsState()
+    val spillPaagaar = uiState.spillstatus == Spillstatus.PÅGÅR
     val spilletFerdig = uiState.spillstatus == Spillstatus.FERDIG
-    val sisteOppgave = !spilletFerdig && (uiState.nåværendeOppgave == uiState.antallOppgaver)
+    val sisteOppgave = uiState.nåværendeOppgave == uiState.antallOppgaver
+    val handleNavigerTilbake = {
+        if(spillPaagaar){
+            viewModel.visAvbryteSpillDialog()
+        }else{
+            onNavigerTilbake()
+        }
+    }
     Scaffold(
         modifier = modifier,
         topBar = {
             TopBar(
             tittel = stringResource(R.string.tittel),
-            onNavigerTilbake = onNavigerTilbake
+            onNavigerTilbake = handleNavigerTilbake
             )
         }
     ){ innerPadding ->
@@ -89,29 +104,70 @@ fun Spillside(
                 GenerellKnapp(
                     modifier = Modifier.fillMaxWidth(),
                     tekst = stringResource(R.string.sjekkSvar),
-                    onClick = { viewModel.sjekkSvar() },
+                    onClick = {
+                        viewModel.sjekkSvar()
+                    },
                     knappfarge = MaterialTheme.colorScheme.primary,
                     enabled = !uiState.rettSvar && !spilletFerdig
                 )
                 Spacer(modifier = Modifier.height(12.dp))
-                GenerellKnapp(
-                    modifier = Modifier.fillMaxWidth(),
-                    tekst = when{
-                        spilletFerdig -> stringResource(R.string.startNyttSpill)
-                        sisteOppgave -> "Avslutt spill"
-                        else -> stringResource(R.string.neste)
-                    }
-                    ,
-                    onClick = {
-                        if(spilletFerdig){
+                if(sisteOppgave){
+                    GenerellKnapp(
+                        modifier = Modifier.fillMaxWidth(),
+                        tekst = if (spilletFerdig) stringResource(R.string.startNyttSpill)  else stringResource(R.string.avsluttRunde),
+                        onClick = { if (spilletFerdig){
                             viewModel.startNyttSpill()
-                        }else{
-                            viewModel.nesteOppgave()
-                        }
-                    },
-                    knappfarge = MaterialTheme.colorScheme.secondary,
-                    enabled = true
-                )
+                        } else{
+                            viewModel.avsluttSpill()
+                            viewModel.visSpillFerdigDialog()
+                        } },
+                        knappfarge = MaterialTheme.colorScheme.secondary,
+                        enabled = true
+                    )
+                }else{
+                    GenerellKnapp(
+                        modifier = Modifier.fillMaxWidth(),
+                        tekst = stringResource(R.string.neste),
+                        onClick = { viewModel.nesteOppgave() },
+                        knappfarge = MaterialTheme.colorScheme.secondary,
+                        enabled = true
+                    )
+                }
+                if(spillFerdigDialog){
+                    Dialog(
+                        onBekreft = {
+                            viewModel.lukkSpillFerdigDialog()
+                            viewModel.startNyttSpill()
+                            },
+                        onAvbryt = {
+                            viewModel.lukkSpillFerdigDialog()
+                        },
+                        dialogtittel = stringResource(R.string.spillFerdigTittel),
+                        dialogtekst = stringResource(R.string.spillFerdigTekst, uiState.score, uiState.antallOppgaver),
+                        bekreftTekst = stringResource(R.string.ja),
+                        avbrytTekst = stringResource(R.string.nei)
+                    )
+                }
+                if(avbryteSpillDialog){
+                    Dialog(
+                        onBekreft = {
+                            viewModel.lukkAvbryteSpillDialog()
+                            viewModel.avsluttSpill()
+                            onNavigerTilbake()
+                        },
+                        onAvbryt = {
+                            viewModel.lukkAvbryteSpillDialog()
+                        },
+                        dialogtittel = stringResource(R.string.avbryteSpillTittel),
+                        dialogtekst = stringResource(R.string.avbryteSpillTekst),
+                        bekreftTekst = stringResource(R.string.ja),
+                        avbrytTekst = stringResource(R.string.nei)
+                    )
+                }
+                }
+                BackHandler{
+                    handleNavigerTilbake()
+                }
             }
         }
 

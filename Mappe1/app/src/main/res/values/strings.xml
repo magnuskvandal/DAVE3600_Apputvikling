@@ -28,4 +28,11 @@
     <string name="fremdrift" translatable="false">%1$d/%2$d</string>
     <string name="startNyttSpill">Start nytt spill</string>
     <string name="riktigeSvar">Riktige svar: %1$d</string>
+    <string name="spillFerdigTittel">Ferdig!"</string>
+    <string name="spillFerdigTekst">Du klarte %1$d av %2$d oppgaver. Vil du prøve igjen?</string>
+    <string name="ja">Ja</string>
+    <string name="nei">Nei</string>
+    <string name="avsluttRunde">Avslutt spillrunden</string>
+    <string name="avbryteSpillTittel">Avbryte spillrunde</string>
+    <string name="avbryteSpillTekst">Er du sikker på at du vil avbryte spillrunden?</string>
 </resources>

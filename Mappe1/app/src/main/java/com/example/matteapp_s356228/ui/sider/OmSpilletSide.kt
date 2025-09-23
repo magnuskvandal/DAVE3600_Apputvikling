@@ -1,12 +1,20 @@
 package com.example.matteapp_s356228.ui.sider
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.matteapp_s356228.ui.komponenter.TopBar
 import com.example.matteapp_s356228.ui.theme.Matteapp_s356228Theme
@@ -26,7 +34,23 @@ fun OmSpilletSide(
             )
         }
     ){ innerPadding ->
-        Text(text ="midlertidig tekst" , modifier = Modifier.padding(innerPadding))
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize()
+                .padding(all = 40.dp)
+        ){
+            Text(
+                text = "Overskrift",
+                style = MaterialTheme.typography.headlineSmall,
+                fontWeight = FontWeight.ExtraBold
+            )
+            Spacer(modifier = Modifier.padding(5.dp))
+            Text(
+                text = "Beskrivelse av spill ",
+                style = MaterialTheme.typography.bodyLarge
+            )
+        }
     }
 }
 
@@ -36,6 +60,6 @@ fun OmSpilletSide(
 @Composable
 fun OmSpilletSidePreview() {
     Matteapp_s356228Theme(dynamicColor = false) {
-        //OmSpilletSide()
+        OmSpilletSide(onNavigerTilbake = {})
     }
 }

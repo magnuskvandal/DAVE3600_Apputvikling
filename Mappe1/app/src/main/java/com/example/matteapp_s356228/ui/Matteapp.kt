@@ -7,7 +7,7 @@ import com.example.matteapp_s356228.ui.theme.Matteapp_s356228Theme
 
 @Composable
 fun Matteapp(){
-    Matteapp_s356228Theme(dynamicColor = false) {
+    Matteapp_s356228Theme() {
         val navController = rememberNavController()
         Navigering(navController = navController)
     }
