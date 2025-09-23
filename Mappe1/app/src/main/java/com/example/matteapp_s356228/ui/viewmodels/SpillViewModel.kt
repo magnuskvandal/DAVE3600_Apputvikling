@@ -23,14 +23,11 @@ class SpillViewModel(application: Application): AndroidViewModel(application) {
     ))
     private val _avbryteSpillDialog: MutableStateFlow<Boolean> = MutableStateFlow(value = false)
     private val _spillFerdigDialog: MutableStateFlow<Boolean> = MutableStateFlow(value = false)
-    private val _alleBruktDialog: MutableStateFlow<Boolean> = MutableStateFlow(value = false)
     val uiState: StateFlow<SpillUiState> = _uiState.asStateFlow()
     val spillFerdigDialog: StateFlow<Boolean> = _spillFerdigDialog.asStateFlow()
     val avbryteSpillDialog: StateFlow<Boolean> = _avbryteSpillDialog.asStateFlow()
-    val alleBruktDialog: StateFlow<Boolean> = _alleBruktDialog.asStateFlow()
 
     private lateinit var alleOppgaver: List<Oppgave>
-    private val benyttedeOppgaver: MutableSet<Oppgave> = mutableSetOf()
     private var aktivSpilløktOppgaver: List<Oppgave> = emptyList()
     private var gjeldendeOppgaveIndeks: Int = -1
 
@@ -181,14 +178,4 @@ class SpillViewModel(application: Application): AndroidViewModel(application) {
     fun lukkAvbryteSpillDialog(){
         _avbryteSpillDialog.value = false
     }
-
-    fun visAlleBruktDialog(){
-        _alleBruktDialog.value = true
-    }
-
-    fun lukkAlleBruktDialog(){
-        _alleBruktDialog.value = false
-        benyttedeOppgaver.clear()
-    }
-
 }
