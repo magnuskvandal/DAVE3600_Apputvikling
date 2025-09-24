@@ -8,5 +8,6 @@ data class SpillUiState(
     val svarSjekket : Boolean = false,
     val rettSvar: Boolean = false,
     val spillstatus: Spillstatus = Spillstatus.IKKE_STARTET,
-    val score: Int = 0
+    val score: Int = 0,
+    val korrektSvar: String? = null
     )

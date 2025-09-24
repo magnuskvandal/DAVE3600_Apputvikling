@@ -20,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -43,7 +44,6 @@ fun Spillside(
     onNavigerTilbake: () -> Unit
 ){
     val uiState: SpillUiState by viewModel.uiState.collectAsState()
-    val spillFerdigDialog: Boolean by viewModel.spillFerdigDialog.collectAsState()
     val avbryteSpillDialog: Boolean by viewModel.avbryteSpillDialog.collectAsState()
     val spillPaagaar = uiState.spillstatus == Spillstatus.PÅGÅR
     val spilletFerdig = uiState.spillstatus == Spillstatus.FERDIG
@@ -92,7 +92,9 @@ fun Spillside(
                     antallOppgaver = uiState.antallOppgaver,
                     modifier = Modifier,
                     svarSjekket = uiState.svarSjekket,
-                    score = uiState.score
+                    score = uiState.score,
+                    spillStatus = uiState.spillstatus,
+                    korrektSvar = uiState.korrektSvar
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Tallpanel(
@@ -103,51 +105,49 @@ fun Spillside(
                 Spacer(modifier = Modifier.height(16.dp))
                 GenerellKnapp(
                     modifier = Modifier.fillMaxWidth(),
-                    tekst = stringResource(R.string.sjekkSvar),
-                    onClick = {
-                        viewModel.sjekkSvar()
+                    tekst = if(sisteOppgave && !spilletFerdig){
+                        stringResource(R.string.sjekkSvar)
+                    }else if(spilletFerdig){
+                        stringResource(R.string.ja)
+                    }else{
+                        stringResource(R.string.sjekkSvar)
                     },
-                    knappfarge = MaterialTheme.colorScheme.primary,
-                    enabled = !uiState.rettSvar && !spilletFerdig
+                    onClick = {
+                        if(sisteOppgave && !spilletFerdig){
+                            viewModel.sjekkSvar()
+                        }else if(spilletFerdig){
+                            viewModel.startNyttSpill()
+                        }else{
+                            viewModel.sjekkSvar()
+                        }
+                    },
+                    knappfarge = Color(color = 0xFF4CAF50),
+                    enabled = if (spillPaagaar){
+                        if(uiState.svarSjekket) false else true
+                    }else{
+                        true
+                    }
                 )
                 Spacer(modifier = Modifier.height(12.dp))
-                if(sisteOppgave){
-                    GenerellKnapp(
-                        modifier = Modifier.fillMaxWidth(),
-                        tekst = if (spilletFerdig) stringResource(R.string.startNyttSpill)  else stringResource(R.string.avsluttRunde),
-                        onClick = { if (spilletFerdig){
-                            viewModel.startNyttSpill()
-                        } else{
+                GenerellKnapp(
+                    modifier = Modifier.fillMaxWidth(),
+                   if(spilletFerdig){
+                        stringResource(R.string.nei)
+                    }else{
+                        if(uiState.svarSjekket) stringResource(R.string.neste) else stringResource(R.string.hoppOver)
+                    },
+                    onClick = {
+                        if(sisteOppgave && !spilletFerdig){
                             viewModel.avsluttSpill()
-                            viewModel.visSpillFerdigDialog()
-                        } },
-                        knappfarge = MaterialTheme.colorScheme.secondary,
-                        enabled = true
-                    )
-                }else{
-                    GenerellKnapp(
-                        modifier = Modifier.fillMaxWidth(),
-                        tekst = stringResource(R.string.neste),
-                        onClick = { viewModel.nesteOppgave() },
-                        knappfarge = MaterialTheme.colorScheme.secondary,
-                        enabled = true
-                    )
-                }
-                if(spillFerdigDialog){
-                    Dialog(
-                        onBekreft = {
-                            viewModel.lukkSpillFerdigDialog()
-                            viewModel.startNyttSpill()
-                            },
-                        onAvbryt = {
-                            viewModel.lukkSpillFerdigDialog()
-                        },
-                        dialogtittel = stringResource(R.string.spillFerdigTittel),
-                        dialogtekst = stringResource(R.string.spillFerdigTekst, uiState.score, uiState.antallOppgaver),
-                        bekreftTekst = stringResource(R.string.ja),
-                        avbrytTekst = stringResource(R.string.nei)
-                    )
-                }
+                        }else if(spilletFerdig){
+                            onNavigerTilbake()
+                        }else{
+                            viewModel.nesteOppgave()
+                        }
+                    },
+                    knappfarge = Color(color = 0xFF4CAF50),
+                    enabled = true
+                )
                 if(avbryteSpillDialog){
                     Dialog(
                         onBekreft = {

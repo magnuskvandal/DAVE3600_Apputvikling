@@ -17,10 +17,13 @@
     <string name="nummer_9" translatable="false">9</string>
     <string name="sjekkSvar">Sjekk svar</string>
     <string name="neste">Neste</string>
+    <string name="hoppOver">Hopp over</string>
     <string name="tømSvar">Tøm</string>
     <string name="slettTall" translatable="false">⌫</string>
     <string name="rettSvar">Riktig!</string>
     <string name="feilSvar">Feil!</string>
+    <string name="korrektSvar">Korrekt svar: %s</string>
+    <string name="trykkNeste">Trykk neste for neste oppgave</string>
     <string name="antallOppgaver">Antall oppgaver per spill</string>
     <string name="antallOppgaver5" translatable="false">5</string>
     <string name="antallOppgaver10" translatable="false">10</string>
@@ -28,8 +31,8 @@
     <string name="fremdrift" translatable="false">%1$d/%2$d</string>
     <string name="startNyttSpill">Start nytt spill</string>
     <string name="riktigeSvar">Riktige svar: %1$d</string>
-    <string name="spillFerdigTittel">Ferdig!"</string>
-    <string name="spillFerdigTekst">Du klarte %1$d av %2$d oppgaver. Vil du prøve igjen?</string>
+    <string name="spillFerdigTittel">Spill ferdig!"</string>
+    <string name="spillFerdigTekst">Du klarte %1$d av %2$d oppgaver.\nVil du prøve igjen?</string>
     <string name="ja">Ja</string>
     <string name="nei">Nei</string>
     <string name="avsluttRunde">Avslutt spillrunden</string>
