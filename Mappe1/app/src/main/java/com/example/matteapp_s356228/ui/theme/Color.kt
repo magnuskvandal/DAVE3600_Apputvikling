@@ -15,13 +15,9 @@ val Pink40 = Color(0xFF7D5260)
 
 
 
-val lysLilla = Color(0xFFE1BEE7)
-val mørkLilla = Color(0xFF4A148C)
 
-val grønn = Color(0xFF2E7D32)
 val lysGrønn = Color(0xFFC8E6C9)
 val mørkGrønn = Color(0xFF1B5E20)
-
 
 val mørkBlå = Color(0xFF001F54)
 val lysBlå = Color(0xFFBBDEFB)
