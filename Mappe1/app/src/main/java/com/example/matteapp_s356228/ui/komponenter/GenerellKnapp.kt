@@ -1,5 +1,6 @@
 package com.example.matteapp_s356228.ui.komponenter
 
+import android.text.LoginFilter
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.material3.Button
@@ -10,14 +11,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.matteapp_s356228.ui.theme.Matteapp_s356228Theme
 
 @Composable
 fun GenerellKnapp(
     modifier: Modifier = Modifier,
     tekst: String,
     onClick: () -> Unit,
-    knappfarge: Color = MaterialTheme.colorScheme.surface,
+    knappfarge: Color = MaterialTheme.colorScheme.tertiary,
     enabled: Boolean = true
 ){
     Button(
@@ -26,9 +29,9 @@ fun GenerellKnapp(
         shape = MaterialTheme.shapes.small,
         colors = ButtonDefaults.buttonColors(
             containerColor = knappfarge,
-            contentColor = MaterialTheme.colorScheme.onSurface,
-            disabledContainerColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12f),
-            disabledContentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
+            contentColor = MaterialTheme.colorScheme.onTertiary,
+            disabledContainerColor = knappfarge.copy(alpha = 0.12f),
+            disabledContentColor = MaterialTheme.colorScheme.onTertiary.copy(alpha = 0.38f)
         ),
         elevation = ButtonDefaults.buttonElevation(
             defaultElevation =  5.dp,
@@ -41,6 +44,17 @@ fun GenerellKnapp(
             text = tekst,
             style = MaterialTheme.typography.headlineSmall,
             fontWeight = FontWeight.ExtraBold
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GenerellKnappPreview(){
+    Matteapp_s356228Theme {
+        GenerellKnapp(
+            tekst = "eksempel",
+            onClick = {},
         )
     }
 }

@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import com.example.matteapp_s356228.R
 import com.example.matteapp_s356228.ui.modeller.Spillstatus
 import com.example.matteapp_s356228.ui.theme.Matteapp_s356228Theme
+import com.example.matteapp_s356228.ui.theme.spillDisplay
 
 @Composable
 fun Display(
@@ -51,7 +53,7 @@ fun Display(
                 shape = MaterialTheme.shapes.medium,
             )
             .background(
-                color = MaterialTheme.colorScheme.background,
+                color = spillDisplay,
                 shape = MaterialTheme.shapes.medium
             )
             .padding(vertical = 8.dp, horizontal = 12.dp),
@@ -61,6 +63,7 @@ fun Display(
                 text = stringResource(R.string.riktigeSvar, score),
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold,
+                fontFamily = FontFamily.Monospace,
                 color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
                 modifier = Modifier.align(Alignment.TopStart)
             )
@@ -78,6 +81,7 @@ fun Display(
                         color = MaterialTheme.colorScheme.onBackground.copy(.8f),
                         textAlign = TextAlign.Center,
                         fontWeight = FontWeight.Bold,
+                        fontFamily = FontFamily.Monospace,
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 3.dp)
@@ -87,6 +91,7 @@ fun Display(
                         style = MaterialTheme.typography.headlineSmall,
                         color = MaterialTheme.colorScheme.onBackground.copy(.8f),
                         fontWeight = FontWeight.SemiBold,
+                        fontFamily = FontFamily.Monospace,
                         modifier = Modifier
                             .padding(vertical = 10.dp)
                     )
@@ -96,6 +101,7 @@ fun Display(
                 Text(
                     text = "$oppgavetekst = $svartekst",
                     style = MaterialTheme.typography.displaySmall,
+                    fontFamily = FontFamily.Monospace,
                     color = MaterialTheme.colorScheme.onBackground,
                     maxLines = 2,
                     modifier = Modifier
@@ -115,6 +121,7 @@ fun Display(
                         color = if (rettSvar) Color(0xFF4CAF50).copy(alpha = .8f) else Color(0xFFF44336).copy(alpha = .8f),
                         textAlign = TextAlign.Center,
                         fontWeight = FontWeight.Bold,
+                        fontFamily = FontFamily.Monospace,
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(top = 15.dp, bottom = 10.dp)
@@ -126,6 +133,7 @@ fun Display(
                             color = MaterialTheme.colorScheme.onBackground.copy(.8f),
                             fontWeight = FontWeight.SemiBold,
                             textAlign = TextAlign.Start,
+                            fontFamily = FontFamily.Monospace,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = 3.dp, horizontal = 20.dp)
@@ -137,6 +145,7 @@ fun Display(
                         color = MaterialTheme.colorScheme.onBackground.copy(.8f),
                         fontWeight = FontWeight.SemiBold,
                         textAlign = TextAlign.Start,
+                        fontFamily = FontFamily.Monospace,
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 3.dp, horizontal = 20.dp)
@@ -149,6 +158,7 @@ fun Display(
             style = MaterialTheme.typography.headlineSmall,
             color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
             fontWeight = FontWeight.Bold,
+            fontFamily = FontFamily.Monospace,
             modifier = Modifier.align(Alignment.TopEnd)
         )
     }

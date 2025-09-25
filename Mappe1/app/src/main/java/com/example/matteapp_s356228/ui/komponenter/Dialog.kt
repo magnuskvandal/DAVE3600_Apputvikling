@@ -2,6 +2,7 @@ package com.example.matteapp_s356228.ui.komponenter
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -21,6 +22,10 @@ fun Dialog(
     avbrytTekst: String
 ){
     AlertDialog(
+        containerColor = MaterialTheme.colorScheme.background,
+        titleContentColor = MaterialTheme.colorScheme.primary,
+        textContentColor = MaterialTheme.colorScheme.onBackground,
+
         icon = {
             if (ikon != null)
                 Icon(

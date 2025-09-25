@@ -71,7 +71,7 @@ fun Spillside(
                 .padding(vertical = 24.dp, horizontal = 16.dp),
             shape = MaterialTheme.shapes.large,
             colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surface),
+                containerColor = MaterialTheme.colorScheme.tertiary),
             elevation = CardDefaults.cardElevation(
                 defaultElevation = 10.dp
             ),
@@ -121,7 +121,6 @@ fun Spillside(
                             viewModel.sjekkSvar()
                         }
                     },
-                    knappfarge = Color(color = 0xFF4CAF50),
                     enabled = if (spillPaagaar){
                         if(uiState.svarSjekket) false else true
                     }else{
@@ -145,7 +144,6 @@ fun Spillside(
                             viewModel.nesteOppgave()
                         }
                     },
-                    knappfarge = Color(color = 0xFF4CAF50),
                     enabled = true
                 )
                 if(avbryteSpillDialog){
