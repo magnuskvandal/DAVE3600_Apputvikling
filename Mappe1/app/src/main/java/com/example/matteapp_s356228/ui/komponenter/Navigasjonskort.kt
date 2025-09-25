@@ -39,7 +39,10 @@ fun Navigasjonskort(
             defaultElevation = 20.dp
         ),
         border = BorderStroke(width = 1.dp, color = MaterialTheme.colorScheme.outline),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.secondary,
+            contentColor = MaterialTheme.colorScheme.onSecondary
+        ),
         onClick = onClick
     ){
         Row(
@@ -50,7 +53,7 @@ fun Navigasjonskort(
                 imageVector = ikon,
                 contentDescription = null,
                 modifier = Modifier.size(60.dp),
-                tint = MaterialTheme.colorScheme.onBackground
+                tint = MaterialTheme.colorScheme.primary
             )
             Spacer(modifier = Modifier
                 .width(50.dp)
@@ -60,7 +63,7 @@ fun Navigasjonskort(
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.ExtraBold,
                 style = MaterialTheme.typography.headlineMedium,
-                color = MaterialTheme.colorScheme.onSurface
+                color = MaterialTheme.colorScheme.onSecondary
             )
         }
     }

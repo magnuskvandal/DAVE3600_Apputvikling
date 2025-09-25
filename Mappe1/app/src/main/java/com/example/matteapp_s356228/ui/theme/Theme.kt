@@ -19,16 +19,20 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40,
-    background = lysBeige,
-    surface = lysegrønn,
+    primary = mørkGrønn,
     onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = mørkegrønn,
-    onSurface = mørkegrønn,
+
+    secondary = lysGrønn,
+    onSecondary = mørkGrønn,
+
+    tertiary = oransje,
+    onTertiary = mørkGrønn,
+
+    background = lysBeige,
+    onBackground = mørkGrønn,
+
+    surface = mørkGrønn,
+    onSurface = Color.White,
 
 )
 

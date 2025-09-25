@@ -20,21 +20,21 @@ fun Tallpanelknapp(
     modifier: Modifier = Modifier,
     tekst: String,
     onClick: () -> Unit,
-    knappfarge: Color = MaterialTheme.colorScheme.surface,
+    knappfarge: Color = MaterialTheme.colorScheme.tertiary,
     textStyle : TextStyle = MaterialTheme.typography.headlineLarge,
 ){
     Button(
         onClick= onClick,
         modifier = modifier.sizeIn(minWidth = 65.dp, minHeight = 65.dp),
-        shape = MaterialTheme.shapes.small,
+        shape = MaterialTheme.shapes.medium,
         colors = ButtonDefaults.buttonColors(
             containerColor = knappfarge,
-            contentColor = MaterialTheme.colorScheme.onSurface,
-            disabledContainerColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12f),
-            disabledContentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
+            contentColor = MaterialTheme.colorScheme.onTertiary,
+            disabledContainerColor = MaterialTheme.colorScheme.onTertiary.copy(alpha = 0.12f),
+            disabledContentColor = MaterialTheme.colorScheme.onTertiary.copy(alpha = 0.38f)
         ),
         elevation = ButtonDefaults.buttonElevation(
-            defaultElevation =  20.dp,
+            defaultElevation =  5.dp,
         ),
         border = BorderStroke(width = .5.dp, color = MaterialTheme.colorScheme.outline),
     ){
