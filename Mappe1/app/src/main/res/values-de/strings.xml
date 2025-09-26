@@ -23,4 +23,6 @@
     <string name="nei">Nein</string>
     <string name="avbryteSpillTittel">Spielrunde abbrechen</string>
     <string name="avbryteSpillTekst">Bist du sicher, dass du die Spielrunde abbrechen möchtest?</string>
+    <string name="omSpilletOverskrift">Kurz zum Mathe-Spiel</string>
+    <string name="omSpilletTekst">Dieses Mathe-Spiel wurde für Kinder entwickelt, die das Addieren üben möchten. Das Spiel besteht aus einfachen Additionsaufgaben, und der Spieler kann Spielrunden mit 5, 10 oder 15 Aufgaben wählen. Nach jeder Antwort erfährt der Spieler, ob sie richtig oder falsch war, und am Ende des Spiels wird eine Gesamtnote angezeigt.</string>
 </resources>

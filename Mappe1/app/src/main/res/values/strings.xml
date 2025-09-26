@@ -37,4 +37,10 @@
     <string name="nei">Nei</string>
     <string name="avbryteSpillTittel">Avbryte spillrunde</string>
     <string name="avbryteSpillTekst">Er du sikker på at du vil avbryte spillrunden?</string>
+    <string name="omSpilletOverskrift">Kort om mattespillet</string>
+    <string name="omSpilletTekst">
+        Dette mattespillet er laget for barn som ønsker å trene på addisjon.
+        Spillet består av enkle addisjonsstykker, og spilleren kan velge spillrunder på 5, 10 eller 15 oppgaver.
+        Etter hvert svar får spilleren vite om det var riktig eller galt, og en samlet poengsum vises ved slutten av spillet.
+    </string>
 </resources>

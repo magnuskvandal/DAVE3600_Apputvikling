@@ -1,6 +1,5 @@
 package com.example.matteapp_s356228.ui.komponenter
 
-import android.text.LoginFilter
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.material3.Button

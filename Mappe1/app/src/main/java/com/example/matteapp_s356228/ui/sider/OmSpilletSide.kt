@@ -15,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.matteapp_s356228.ui.komponenter.TopBar
 import com.example.matteapp_s356228.ui.theme.Matteapp_s356228Theme
@@ -41,14 +42,17 @@ fun OmSpilletSide(
                 .padding(all = 40.dp)
         ){
             Text(
-                text = "Overskrift",
+                text = stringResource(R.string.omSpilletOverskrift),
                 style = MaterialTheme.typography.headlineSmall,
-                fontWeight = FontWeight.ExtraBold
+                fontWeight = FontWeight.ExtraBold,
             )
             Spacer(modifier = Modifier.padding(5.dp))
             Text(
-                text = "Beskrivelse av spill ",
-                style = MaterialTheme.typography.bodyLarge
+                text = stringResource(R.string.omSpilletTekst),
+                style = MaterialTheme.typography.bodyLarge,
+                lineHeight = 25.sp
+
+
             )
         }
     }
