@@ -44,7 +44,7 @@ fun Display(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .size(height = 200.dp, width = 300.dp)
+            .size(height = 220.dp, width = 300.dp)
             .border(
                 BorderStroke(
                     width = 0.5.dp,
@@ -56,12 +56,12 @@ fun Display(
                 color = spillDisplay,
                 shape = MaterialTheme.shapes.medium
             )
-            .padding(vertical = 8.dp, horizontal = 12.dp),
+            .padding(vertical = 6.dp, horizontal = 12.dp),
     ) {
         if(score > 0 && spillStatus != Spillstatus.FERDIG){
             Text(
                 text = stringResource(R.string.riktigeSvar, score),
-                style = MaterialTheme.typography.headlineSmall,
+                style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
                 fontFamily = FontFamily.Monospace,
                 color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
@@ -84,16 +84,16 @@ fun Display(
                         fontFamily = FontFamily.Monospace,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(vertical = 3.dp)
+                            .padding(vertical = 20.dp)
                     )
                     Text(
                         text = stringResource(R.string.spillFerdigTekst, score, antallOppgaver),
-                        style = MaterialTheme.typography.headlineSmall,
+                        style = MaterialTheme.typography.titleMedium,
                         color = MaterialTheme.colorScheme.onBackground.copy(.8f),
                         fontWeight = FontWeight.SemiBold,
                         fontFamily = FontFamily.Monospace,
                         modifier = Modifier
-                            .padding(vertical = 10.dp)
+                            .padding(vertical = 2.dp)
                     )
                 }
             }
@@ -129,7 +129,7 @@ fun Display(
                     if(!rettSvar && korrektSvar != null){
                         Text(
                             text = stringResource(R.string.korrektSvar, korrektSvar),
-                            style = MaterialTheme.typography.headlineSmall,
+                            style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.colorScheme.onBackground.copy(.8f),
                             fontWeight = FontWeight.SemiBold,
                             textAlign = TextAlign.Start,
@@ -141,7 +141,7 @@ fun Display(
                     }
                     Text(
                         text = stringResource(R.string.trykkNeste),
-                        style = MaterialTheme.typography.headlineSmall,
+                        style = MaterialTheme.typography.titleMedium,
                         color = MaterialTheme.colorScheme.onBackground.copy(.8f),
                         fontWeight = FontWeight.SemiBold,
                         textAlign = TextAlign.Start,
@@ -183,7 +183,7 @@ fun DisplayPreview() {
     }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFC8E6C9)
+@Preview(showBackground = true, backgroundColor = 0xFFC8E6C9,  locale = "de")
 @Composable
 fun DisplayPreview2() {
     Matteapp_s356228Theme(dynamicColor = false) {
@@ -195,7 +195,7 @@ fun DisplayPreview2() {
             antallOppgaver = 10,
             svarSjekket = true,
             score = 3,
-            spillStatus = Spillstatus.PÅGÅR,
+            spillStatus = Spillstatus.FERDIG,
             korrektSvar = "22"
         )
     }

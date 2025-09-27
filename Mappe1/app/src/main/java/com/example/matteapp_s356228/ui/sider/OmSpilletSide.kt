@@ -50,6 +50,7 @@ fun OmSpilletSide(
             Text(
                 text = stringResource(R.string.omSpilletTekst),
                 style = MaterialTheme.typography.bodyLarge,
+                fontWeight = FontWeight.Normal,
                 lineHeight = 25.sp
 
 

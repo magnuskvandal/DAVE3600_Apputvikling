@@ -18,7 +18,7 @@
     <string name="startNyttSpill">Neues Spiel starten</string>
     <string name="riktigeSvar">Richtige Antworten: %1$d</string>
     <string name="spillFerdigTittel">Spiel fertig!</string>
-    <string name="spillFerdigTekst">Sie haben %1$d von %2$d Aufgaben geschafft.\nMöchten Sie es noch einmal versuchen?</string>
+    <string name="spillFerdigTekst">Sie haben %1$d von %2$d Aufgaben geschafft.Möchten Sie es noch einmal versuchen?</string>
     <string name="ja">Ja</string>
     <string name="nei">Nein</string>
     <string name="avbryteSpillTittel">Spielrunde abbrechen</string>
