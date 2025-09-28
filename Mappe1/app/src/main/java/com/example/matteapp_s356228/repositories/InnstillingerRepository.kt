@@ -12,11 +12,13 @@ class InnstillingerRepository(application: Application): AndroidViewModel(applic
         Context.MODE_PRIVATE
     )
 
+    // Funksjon for å lagre valgt antall oppgaver i SharedPreferences
     fun lagreValgtAntallOppgaver(antall: Int){
         val editor = sharedPref.edit()
         editor.putInt("antall_oppgaver", antall).apply()
     }
 
+    // Funksjon for å hente valgt antall oppgaver fra SharedPreferences
     fun hentValgtAntallOppgaver() : Int{
         return sharedPref.getInt("antall_oppgaver", 5)
     }
