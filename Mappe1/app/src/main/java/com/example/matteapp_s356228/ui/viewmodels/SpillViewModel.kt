@@ -24,6 +24,7 @@ class SpillViewModel(application: Application): AndroidViewModel(application) {
         antallOppgaver = innstillingerRepository.hentValgtAntallOppgaver()
     )) // tilstand for spill-UI
     private val _avbryteSpillDialog: MutableStateFlow<Boolean> = MutableStateFlow(value = false) // tilstand for dialog for å avbryte spill
+    val uiState: StateFlow<SpillUiState> = _uiState.asStateFlow() // offentlig og lesbar tilstand for spill-UI
     val avbryteSpillDialog: StateFlow<Boolean> = _avbryteSpillDialog.asStateFlow() // offentlig og lesbar tilstand for dialog for å avbryte spill
     private lateinit var alleOppgaver: List<Oppgave> // liste over alle mulige oppgaver
     private var aktivSpilløktOppgaver: List<Oppgave> = emptyList() // liste over oppgaver i den aktive spillrunden
