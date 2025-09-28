@@ -14,6 +14,8 @@ import androidx.compose.ui.unit.dp
 import com.example.matteapp_s356228.R
 import com.example.matteapp_s356228.ui.theme.Matteapp_s356228Theme
 
+
+// Tallpanel-komponent med knapper for tallene 0-9, slett og tøm
 @Composable
 fun Tallpanel(
     onSifferKlikk: (String) -> Unit,
@@ -26,11 +28,12 @@ fun Tallpanel(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ){
-        val knappeModifier = Modifier.weight(1f)
+        val knappeModifier = Modifier.weight(1f) //variabel for knappene sin modifier
         Row(
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
             modifier = Modifier.fillMaxWidth()
         ){
+            // Første rad med knapper:
             Tallpanelknapp(tekst = stringResource(R.string.nummer_7), onClick = { onSifferKlikk("7") }, modifier = knappeModifier)
             Tallpanelknapp(tekst = stringResource(R.string.nummer_8), onClick = { onSifferKlikk("8") }, modifier = knappeModifier)
             Tallpanelknapp(tekst = stringResource(R.string.nummer_9), onClick = { onSifferKlikk("9") }, modifier = knappeModifier)
@@ -39,6 +42,7 @@ fun Tallpanel(
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
             modifier = Modifier.fillMaxWidth()
         ){
+            // Andre rad med knapper:
             Tallpanelknapp(tekst = stringResource(R.string.nummer_4), onClick = { onSifferKlikk("4") }, modifier = knappeModifier)
             Tallpanelknapp(tekst = stringResource(R.string.nummer_5), onClick = { onSifferKlikk("5") }, modifier = knappeModifier)
             Tallpanelknapp(tekst = stringResource(R.string.nummer_6), onClick = { onSifferKlikk("6") }, modifier = knappeModifier)
@@ -47,6 +51,7 @@ fun Tallpanel(
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
             modifier = Modifier.fillMaxWidth()
         ){
+            // Tredje rad med knapper: 1, 2, 3
             Tallpanelknapp(tekst = stringResource(R.string.nummer_1), onClick = { onSifferKlikk("1") }, modifier = knappeModifier)
             Tallpanelknapp(tekst = stringResource(R.string.nummer_2), onClick = { onSifferKlikk("2") }, modifier = knappeModifier)
             Tallpanelknapp(tekst = stringResource(R.string.nummer_3), onClick = { onSifferKlikk("3") }, modifier = knappeModifier)
@@ -55,6 +60,7 @@ fun Tallpanel(
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
             modifier = Modifier.fillMaxWidth()
         ){
+            // Fjerde rad med knapper: Tøm, 0, Slett
             Tallpanelknapp(
                 tekst = stringResource(R.string.tømSvar),
                 onClick = onTomKlikk,
@@ -68,18 +74,5 @@ fun Tallpanel(
                 modifier = knappeModifier,
             )
         }
-    }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun TallpanelPreview() {
-    Matteapp_s356228Theme(dynamicColor = false){
-        Tallpanel(
-            onSifferKlikk = {},
-            onTomKlikk = {},
-            onSlettKlikk = {},
-        )
     }
 }

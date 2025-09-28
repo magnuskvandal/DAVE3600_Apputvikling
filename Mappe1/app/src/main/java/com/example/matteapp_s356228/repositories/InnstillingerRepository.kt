@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.lifecycle.AndroidViewModel
 
+// Repository for å håndtere lagring og henting av innstillinger/preferanser i SharedPreferences
 class InnstillingerRepository(application: Application): AndroidViewModel(application) {
     private val sharedPref: SharedPreferences = application.getSharedPreferences(
         "matteapp_pref",

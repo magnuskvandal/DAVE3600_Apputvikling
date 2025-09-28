@@ -26,6 +26,8 @@ import androidx.compose.ui.unit.dp
 import com.example.matteapp_s356228.R
 import com.example.matteapp_s356228.ui.modeller.AntallOppgaverValg
 
+
+// Komponent for valg av antall oppgaver per spillrunde.
 @Composable
 fun AntallOppgaver(
     modifier: Modifier = Modifier,
@@ -50,6 +52,7 @@ fun AntallOppgaver(
             modifier = Modifier.selectableGroup()
         ){
             tilgjengeligeAntall.forEach{ valg ->
+                // hele raden gjøres klikkbar
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -78,23 +81,4 @@ fun AntallOppgaver(
             }
         }
     }
-}
-
-
-
-
-
-
-@Preview(showBackground = true, heightDp = 450, widthDp = 400)
-@Composable
-fun AntallOppgaverPreview() {
-    AntallOppgaver(
-        valgtAntall = 10,
-        tilgjengeligeAntall = listOf(
-            AntallOppgaverValg(5, R.string.antallOppgaver5),
-            AntallOppgaverValg(10, R.string.antallOppgaver10),
-            AntallOppgaverValg(15, R.string.antallOppgaver15)
-        ),
-        onAntallValgt = {}
-    )
 }

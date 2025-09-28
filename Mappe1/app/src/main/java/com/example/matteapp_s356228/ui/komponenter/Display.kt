@@ -27,6 +27,8 @@ import com.example.matteapp_s356228.ui.modeller.Spillstatus
 import com.example.matteapp_s356228.ui.theme.Matteapp_s356228Theme
 import com.example.matteapp_s356228.ui.theme.spillDisplay
 
+
+// Displayet til spillet som viser oppgave, svar, fremdrift, score og tilbakemelding
 @Composable
 fun Display(
     modifier: Modifier = Modifier,
@@ -58,6 +60,7 @@ fun Display(
             )
             .padding(vertical = 6.dp, horizontal = 12.dp),
     ) {
+        // Viser score om man har minst ett riktig svar og spillet ikke er ferdig
         if(score > 0 && spillStatus != Spillstatus.FERDIG){
             Text(
                 text = stringResource(R.string.riktigeSvar, score),
@@ -68,7 +71,9 @@ fun Display(
                 modifier = Modifier.align(Alignment.TopStart)
             )
         }
+        // Viser forskjellig innhold basert på spillstatus og om svaret er sjekket
         when {
+            // Hvis spillet er ferdig vises total score
             spillStatus == Spillstatus.FERDIG -> {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -97,6 +102,7 @@ fun Display(
                     )
                 }
             }
+            // Viser oppgave og svar når svaret ikke er sjekket
             !svarSjekket -> {
                 Text(
                     text = "$oppgavetekst = $svartekst",
@@ -109,6 +115,7 @@ fun Display(
                         .padding(vertical = 75.dp)
                 )
             }
+            // Viser tilbakemelding etter svaret er sjekket
             else -> {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -116,7 +123,7 @@ fun Display(
                         .align(Alignment.Center)
                 ){
                     Text(
-                        text = if(rettSvar) stringResource(R.string.rettSvar) else stringResource(R.string.feilSvar),
+                        text = if(rettSvar) stringResource(R.string.rettSvar) else stringResource(R.string.feilSvar), // Forskjellig tekst basert på om svaret var rett eller galt
                         style = MaterialTheme.typography.headlineMedium,
                         color = if (rettSvar) Color(0xFF4CAF50).copy(alpha = .8f) else Color(0xFFF44336).copy(alpha = .8f),
                         textAlign = TextAlign.Center,
@@ -126,6 +133,7 @@ fun Display(
                             .fillMaxWidth()
                             .padding(top = 15.dp, bottom = 10.dp)
                     )
+                    // Viser korrekt svar om svaret var feil
                     if(!rettSvar && korrektSvar != null){
                         Text(
                             text = stringResource(R.string.korrektSvar, korrektSvar),
@@ -153,6 +161,7 @@ fun Display(
                 }
             }
         }
+        // Viser fremdrift øverst til høyre
         Text(
             text = stringResource(R.string.fremdrift, fremdrift, antallOppgaver),
             style = MaterialTheme.typography.headlineSmall,
@@ -160,43 +169,6 @@ fun Display(
             fontWeight = FontWeight.Bold,
             fontFamily = FontFamily.Monospace,
             modifier = Modifier.align(Alignment.TopEnd)
-        )
-    }
-}
-
-@Preview(showBackground = true, backgroundColor = 0xFFFAF0E6)
-@Composable
-fun DisplayPreview() {
-    Matteapp_s356228Theme(dynamicColor = false) {
-        Box(modifier = Modifier.padding(16.dp)) {
-            Display(
-                oppgavetekst = "12 + 8",
-                svartekst = "",
-                rettSvar = false,
-                fremdrift = 1,
-                antallOppgaver = 5,
-                svarSjekket = false,
-                score = 0,
-                spillStatus = Spillstatus.PÅGÅR
-            )
-        }
-    }
-}
-
-@Preview(showBackground = true, backgroundColor = 0xFFC8E6C9,  locale = "de")
-@Composable
-fun DisplayPreview2() {
-    Matteapp_s356228Theme(dynamicColor = false) {
-        Display(
-            oppgavetekst = "123 x 45",
-            svartekst = "5535",
-            rettSvar = false,
-            fremdrift = 4,
-            antallOppgaver = 10,
-            svarSjekket = true,
-            score = 3,
-            spillStatus = Spillstatus.FERDIG,
-            korrektSvar = "22"
         )
     }
 }

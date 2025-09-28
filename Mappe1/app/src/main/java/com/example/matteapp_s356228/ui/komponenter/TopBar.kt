@@ -16,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.matteapp_s356228.R
 import com.example.matteapp_s356228.ui.theme.Matteapp_s356228Theme
 
+// Toppbar-komponent med tittel og tilbakeknapp som brukes på alle sider utenom startsiden
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(
@@ -43,14 +44,4 @@ fun TopBar(
     )
 }
 
-@Preview(showBackground = true)
-@Composable
-fun StandardTopBarPreview() {
-    Matteapp_s356228Theme(dynamicColor = false) {
-        TopBar(
-            tittel = "Eksempeltittel",
-            onNavigerTilbake = {}
-        )
-    }
-}
 

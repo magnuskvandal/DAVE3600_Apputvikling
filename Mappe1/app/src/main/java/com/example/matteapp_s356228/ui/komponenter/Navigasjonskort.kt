@@ -25,6 +25,7 @@ import com.example.matteapp_s356228.ui.theme.Matteapp_s356228Theme
 
 
 
+// Generell navigasjonskort-komponent som brukes på startsiden
 @Composable
 fun Navigasjonskort(
     modifier: Modifier = Modifier,
@@ -66,17 +67,5 @@ fun Navigasjonskort(
                 color = MaterialTheme.colorScheme.onSecondary
             )
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun NavigasjonskortPreview() {
-    Matteapp_s356228Theme(dynamicColor = false) {
-        Navigasjonskort(
-            tekst = "Start Spill",
-            ikon = Icons.Filled.PlayArrow,
-            onClick = {}
-        )
     }
 }

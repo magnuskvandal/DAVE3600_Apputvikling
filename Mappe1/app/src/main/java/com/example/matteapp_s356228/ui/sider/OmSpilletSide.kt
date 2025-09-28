@@ -21,6 +21,7 @@ import com.example.matteapp_s356228.ui.komponenter.TopBar
 import com.example.matteapp_s356228.ui.theme.Matteapp_s356228Theme
 import com.example.matteapp_s356228.R
 
+// Siden som viser informasjon om spillet
 @Composable
 fun OmSpilletSide(
     modifier: Modifier = Modifier,
@@ -56,15 +57,5 @@ fun OmSpilletSide(
 
             )
         }
-    }
-}
-
-
-
-@Preview(showBackground = true)
-@Composable
-fun OmSpilletSidePreview() {
-    Matteapp_s356228Theme(dynamicColor = false) {
-        OmSpilletSide(onNavigerTilbake = {})
     }
 }

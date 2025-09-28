@@ -9,6 +9,8 @@ import com.example.matteapp_s356228.ui.sider.Preferanserside
 import com.example.matteapp_s356228.ui.sider.Spillside
 import com.example.matteapp_s356228.ui.sider.Startside
 
+
+// komponet som håndterer navigering mellom ulike skjermer i appen
 @Composable
 fun Navigering(
     navController: NavHostController
@@ -16,7 +18,7 @@ fun Navigering(
     val navigerTilbake: () -> Unit = { navController.navigateUp() }
     NavHost(
         navController = navController,
-        startDestination = "startside"
+        startDestination = Ruter.Startside.name
     ){
         composable(route = Ruter.Startside.name){
             Startside(

@@ -1,5 +1,6 @@
 package com.example.matteapp_s356228.ui.modeller
 
+// Modell som representerer spillets UI-tilstand
 data class SpillUiState(
     val oppgavetekst: String = "",
     val brukersvar: String ="",

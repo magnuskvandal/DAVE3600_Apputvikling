@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.matteapp_s356228.ui.theme.Matteapp_s356228Theme
 
+// tallknapp-komponent som brukes i tallpanelet
 @Composable
 fun Tallpanelknapp(
     modifier: Modifier = Modifier,
@@ -43,13 +44,5 @@ fun Tallpanelknapp(
             style = textStyle,
             fontWeight = FontWeight.ExtraBold
         )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun TallpanelKnappPreview() {
-    Matteapp_s356228Theme(dynamicColor = false){
-        GenerellKnapp(tekst = "1", onClick = { /*TODO*/ })
     }
 }

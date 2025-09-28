@@ -29,7 +29,7 @@ import com.example.matteapp_s356228.R
 import com.example.matteapp_s356228.ui.komponenter.Navigasjonskort
 import com.example.matteapp_s356228.ui.navigasjon.Ruter
 
-
+// Startside for appen med navigasjonskort til andre sider
 @Composable
 fun Startside(
     modifier: Modifier = Modifier,
@@ -46,6 +46,8 @@ fun Startside(
             horizontalAlignment = Alignment.CenterHorizontally,
         ){
             Spacer (modifier = Modifier.height(80.dp))
+
+            // App-ikon
             Image(
                 painter = painterResource(id = R.drawable.app_ikon),
                 contentDescription = null,
@@ -53,6 +55,8 @@ fun Startside(
                     .size(100.dp)
             )
             Spacer (modifier = Modifier.height(10.dp))
+
+            // App-tittel
             Text(
                 text = stringResource(R.string.tittel),
                 style = MaterialTheme.typography.displayMedium,
@@ -63,6 +67,7 @@ fun Startside(
 
             Spacer(modifier = Modifier.height(50.dp))
 
+            // navigasjonskort for Start spill
             Navigasjonskort(
                 tekst = stringResource(R.string.startSpill),
                 ikon = Icons.Filled.Calculate,
@@ -71,6 +76,7 @@ fun Startside(
 
             Spacer(modifier = Modifier.height(20.dp))
 
+            // navigasjonskort for Om spillet
             Navigasjonskort(
                 tekst = stringResource(R.string.omSpillet),
                 ikon = Icons.Filled.Info,
@@ -79,6 +85,7 @@ fun Startside(
 
             Spacer(modifier = Modifier.height(20.dp))
 
+            // navigasjonskort for Preferanser
             Navigasjonskort(
                 tekst = stringResource(R.string.preferanser),
                 ikon = Icons.Filled.Settings,

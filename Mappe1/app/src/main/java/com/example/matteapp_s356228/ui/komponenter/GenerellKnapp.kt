@@ -10,10 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.matteapp_s356228.ui.theme.Matteapp_s356228Theme
 
+
+// Generell knapp-komponent som kan brukes på tvers av appen
 @Composable
 fun GenerellKnapp(
     modifier: Modifier = Modifier,
@@ -43,17 +43,6 @@ fun GenerellKnapp(
             text = tekst,
             style = MaterialTheme.typography.headlineSmall,
             fontWeight = FontWeight.ExtraBold
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GenerellKnappPreview(){
-    Matteapp_s356228Theme {
-        GenerellKnapp(
-            tekst = "eksempel",
-            onClick = {},
         )
     }
 }

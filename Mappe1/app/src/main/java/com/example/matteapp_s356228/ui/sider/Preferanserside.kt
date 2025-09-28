@@ -16,6 +16,7 @@ import com.example.matteapp_s356228.R
 import com.example.matteapp_s356228.ui.komponenter.AntallOppgaver
 import com.example.matteapp_s356228.ui.viewmodels.PreferanserViewModel
 
+// Siden hvor man kan sette antall oppgaver for en spiillrunde
 @Composable
 fun Preferanserside(
     modifier: Modifier = Modifier,
@@ -40,6 +41,7 @@ fun Preferanserside(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ) {
+            // radionknapper for antall oppgaver
             AntallOppgaver(
                 valgtAntall = viewModel.valgtAntallState.value,
                 tilgjengeligeAntall = viewModel.muligeAntall,

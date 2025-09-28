@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.matteapp_s356228.ui.theme.Matteapp_s356228Theme
 
+// Generell dialogboks-komponent som kan brukes til bekreftelse/avbrytelse
 @Composable
 fun Dialog(
     onBekreft: () -> Unit,
@@ -61,20 +62,4 @@ fun Dialog(
             }
         }
     )
-}
-
-
-@Preview
-@Composable
-fun DialogPreview(){
-    Matteapp_s356228Theme(dynamicColor = false) {
-        Dialog(
-            onBekreft = {},
-            onAvbryt = {},
-            dialogtittel = "Nytt spill",
-            dialogtekst = "Ønsker du å spille på nytt?",
-            bekreftTekst = "Ja",
-            avbrytTekst = "Nei"
-        )
-    }
 }

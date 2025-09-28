@@ -37,17 +37,20 @@ import com.example.matteapp_s356228.ui.modeller.SpillUiState
 import com.example.matteapp_s356228.ui.modeller.Spillstatus
 import com.example.matteapp_s356228.ui.viewmodels.SpillViewModel
 
+// Siden for selve spillet
 @Composable
 fun Spillside(
     modifier: Modifier = Modifier,
     viewModel: SpillViewModel = viewModel(),
     onNavigerTilbake: () -> Unit
 ){
-    val uiState: SpillUiState by viewModel.uiState.collectAsState()
-    val avbryteSpillDialog: Boolean by viewModel.avbryteSpillDialog.collectAsState()
-    val spillPaagaar = uiState.spillstatus == Spillstatus.PÅGÅR
-    val spilletFerdig = uiState.spillstatus == Spillstatus.FERDIG
-    val sisteOppgave = uiState.nåværendeOppgave == uiState.antallOppgaver
+    val uiState: SpillUiState by viewModel.uiState.collectAsState() // spilltilstand
+    val avbryteSpillDialog: Boolean by viewModel.avbryteSpillDialog.collectAsState() // tilstand for avbryte spill dialog
+    val spillPaagaar = uiState.spillstatus == Spillstatus.PÅGÅR // sjekk om spill pågår
+    val spilletFerdig = uiState.spillstatus == Spillstatus.FERDIG // sjekk om spillet er ferdig
+    val sisteOppgave = uiState.nåværendeOppgave == uiState.antallOppgaver // sjekk om det er siste oppgave
+
+    // Håndterer navigering tilbake med dialog hvis spill pågår
     val handleNavigerTilbake = {
         if(spillPaagaar){
             viewModel.visAvbryteSpillDialog()
@@ -84,6 +87,7 @@ fun Spillside(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
+                // display for oppgave, svar, fremdrift og resultat
                 Display(
                     oppgavetekst = uiState.oppgavetekst,
                     svartekst = uiState.brukersvar,
@@ -97,14 +101,17 @@ fun Spillside(
                     korrektSvar = uiState.korrektSvar
                 )
                 Spacer(modifier = Modifier.height(8.dp))
+                // tallpanel for å avgi svar
                 Tallpanel(
                     onSifferKlikk = { siffer -> viewModel.velgSiffer(tall = siffer) },
                     onTomKlikk = { viewModel.tømBrukersvar() },
                     onSlettKlikk = { viewModel.slettSisteSiffer() },
                 )
                 Spacer(modifier = Modifier.height(16.dp))
+                // knapp for å sjekke svar eller starte nytt spill
                 GenerellKnapp(
                     modifier = Modifier.fillMaxWidth(),
+                    // endre tekst og funksjon basert på spilltilstand
                     tekst = if(sisteOppgave && !spilletFerdig){
                         stringResource(R.string.sjekkSvar)
                     }else if(spilletFerdig){
@@ -112,6 +119,7 @@ fun Spillside(
                     }else{
                         stringResource(R.string.sjekkSvar)
                     },
+                    //
                     onClick = {
                         if(sisteOppgave && !spilletFerdig){
                             viewModel.sjekkSvar()
@@ -121,6 +129,7 @@ fun Spillside(
                             viewModel.sjekkSvar()
                         }
                     },
+                    // deaktiver knapp hvis spill pågår og svar er sjekket
                     enabled = if (spillPaagaar){
                         if(uiState.svarSjekket) false else true
                     }else{
@@ -128,9 +137,12 @@ fun Spillside(
                     }
                 )
                 Spacer(modifier = Modifier.height(12.dp))
+
+                // knapp for å hoppe over oppgave, gå til neste oppgave eller avslutte spill
                 GenerellKnapp(
                     modifier = Modifier.fillMaxWidth(),
-                   if(spilletFerdig){
+                    // endre tekst og funksjon basert på spilltilstand
+                    tekst = if(spilletFerdig){
                         stringResource(R.string.nei)
                     }else{
                         if(uiState.svarSjekket) stringResource(R.string.neste) else stringResource(R.string.hoppOver)
@@ -146,6 +158,8 @@ fun Spillside(
                     },
                     enabled = true
                 )
+
+                // dialog for å bekrefte avbryting av spill
                 if(avbryteSpillDialog){
                     Dialog(
                         onBekreft = {
