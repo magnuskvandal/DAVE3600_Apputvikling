@@ -23,7 +23,10 @@ fun TopBar(
     startIcon: ImageVector,
     startIconContentDescription: String,
     onStartIconClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    endIcon: ImageVector? = null, // Valgfritt ikon
+    endIconContentDescription: String? = null, // Valgfri beskrivelse
+    onEndIconClick: (() -> Unit)? = null // Valgfri klikk-håndterer
 ) {
     CenterAlignedTopAppBar(
         title = {
@@ -31,7 +34,6 @@ fun TopBar(
                 text = title,
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Normal
-                
             )
         },
         modifier = modifier,
@@ -41,6 +43,16 @@ fun TopBar(
                     imageVector = startIcon,
                     contentDescription = startIconContentDescription
                 )
+            }
+        },
+        actions = {
+            if (endIcon != null && onEndIconClick != null) {
+                IconButton(onClick = onEndIconClick) {
+                    Icon(
+                        imageVector = endIcon,
+                        contentDescription = endIconContentDescription
+                    )
+                }
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(

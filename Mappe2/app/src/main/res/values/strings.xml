@@ -11,4 +11,8 @@
     <string name="add_friend_description">Legg til venn</string>
     <string name="friend_list_empty">Vennelisten er tom.</string>
     <string name="preferences_title">Preferanser</string>
+    <string name="details_phone_label">Telefonnummer</string>
+    <string name="details_date_of_birth_label">Fødselsdato</string>
+    <string name="arrow_icon_description">Tilbake</string>
+    <string name="edit_icon_description">Endre venn</string>
 </resources>

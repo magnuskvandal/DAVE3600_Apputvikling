@@ -24,7 +24,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.bursdagsassistent_s356228.R
 import com.example.bursdagsassistent_s356228.data.model.Friend
@@ -100,14 +99,4 @@ private fun calculateDaysUntilNextBirthday(birthDate: LocalDate): Long {
     }
 
     return ChronoUnit.DAYS.between(today, nextBirthday)
-}
-
-@Preview(showBackground = true)
-@Composable
-fun FriendCardPreview() {
-    FriendCard(
-        friend = Friend(id = 1, firstName = "Magnus", lastName = "Magnussen", phoneNumber = "12345678", dateOfBirth = LocalDate.of(2001, 1, 1)),
-        onClick = {},
-        onDelete = {}
-    )
 }

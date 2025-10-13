@@ -1,0 +1,47 @@
+package com.example.bursdagsassistent_s356228.ui.components
+
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.example.bursdagsassistent_s356228.ui.theme.Bursdagsassistent_s356228Theme
+import java.time.LocalDate
+
+@Composable
+fun FriendDetailItem(
+    label: String,
+    value: String,
+    modifier: Modifier = Modifier
+) {
+    Column(modifier = modifier.fillMaxWidth()) {
+        Text(
+            text = label,
+            style = MaterialTheme.typography.labelMedium,
+            color = MaterialTheme.colorScheme.primary
+        )
+        Text(
+            text = value,
+            style = MaterialTheme.typography.bodyLarge,
+            modifier = Modifier.padding(top = 4.dp)
+        )
+        HorizontalDivider(modifier = Modifier.padding(top = 16.dp), color = MaterialTheme.colorScheme.outlineVariant)
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun FriendDetailItemPreview() {
+    Bursdagsassistent_s356228Theme {
+        FriendDetailItem(
+            label = "Fødselsdato",
+            value = LocalDate.of(1995, 5, 17).toString(),
+            modifier = Modifier.padding(16.dp)
+        )
+    }
+}

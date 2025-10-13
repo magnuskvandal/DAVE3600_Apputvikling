@@ -4,18 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.bursdagsassistent_s356228.ui.screens.FriendFormScreen
-import com.example.bursdagsassistent_s356228.ui.screens.FriendListScreen
-import com.example.bursdagsassistent_s356228.ui.screens.PreferencesScreen
+import androidx.navigation.compose.rememberNavController
+import com.example.bursdagsassistent_s356228.ui.navigation.AppNavigation
 import com.example.bursdagsassistent_s356228.ui.theme.Bursdagsassistent_s356228Theme
 
 class MainActivity : ComponentActivity() {
@@ -24,11 +14,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Bursdagsassistent_s356228Theme {
-                FriendListScreen(
-                    onFriendClick = { friendId -> /* TODO: Naviger til FriendFormScreen med friendId */ },
-                    onAddFriendClick = { /* TODO: Naviger til FriendFormScreen for å legge til ny venn */ },
-                    onPreferencesClick = { /* TODO: Naviger til PreferencesScreen */ }
-                )
+                val navController = rememberNavController()
+                AppNavigation(navController = navController)
             }
         }
     }
