@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 
 class FriendDetailsViewModel(
-    friendRepository: FriendRepository,
+    private val friendRepository: FriendRepository,
     savedStateHandle: SavedStateHandle,
     application: Application
     ): AndroidViewModel(application) {

@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.bursdagsassistent_s356228.ui.screens.FriendFormScreen
 import com.example.bursdagsassistent_s356228.ui.screens.FriendListScreen
+import com.example.bursdagsassistent_s356228.ui.screens.PreferencesScreen
 import com.example.bursdagsassistent_s356228.ui.theme.Bursdagsassistent_s356228Theme
 
 class MainActivity : ComponentActivity() {
@@ -23,12 +24,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Bursdagsassistent_s356228Theme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    FriendListScreen()
-                }
+                FriendListScreen(
+                    onFriendClick = { friendId -> /* TODO: Naviger til FriendFormScreen med friendId */ },
+                    onAddFriendClick = { /* TODO: Naviger til FriendFormScreen for å legge til ny venn */ },
+                    onPreferencesClick = { /* TODO: Naviger til PreferencesScreen */ }
+                )
             }
         }
     }

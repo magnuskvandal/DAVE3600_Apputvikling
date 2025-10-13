@@ -16,21 +16,13 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 
-/**
- * En generell, gjenbrukbar TopAppBar for appen.
- *
- * @param title Tittelen som skal vises i midten av TopAppBar.
- * @param navigationIcon Ikonet som skal vises for navigasjon (f.eks. meny eller tilbake-pil).
- * @param navigationIconContentDescription Beskrivelse for skjermlesere.
- * @param onNavigationIconClick Lambda som kalles når navigasjonsikonet trykkes.
- */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(
     title: String,
-    navigationIcon: ImageVector,
-    navigationIconContentDescription: String,
-    onNavigationIconClick: () -> Unit,
+    startIcon: ImageVector,
+    startIconContentDescription: String,
+    onStartIconClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     CenterAlignedTopAppBar(
@@ -38,15 +30,16 @@ fun TopBar(
             Text(
                 text = title,
                 style = MaterialTheme.typography.headlineMedium,
-                fontWeight = FontWeight.SemiBold
+                fontWeight = FontWeight.Normal
+                
             )
         },
         modifier = modifier,
         navigationIcon = {
-            IconButton(onClick = onNavigationIconClick) {
+            IconButton(onClick = onStartIconClick) {
                 Icon(
-                    imageVector = navigationIcon,
-                    contentDescription = navigationIconContentDescription
+                    imageVector = startIcon,
+                    contentDescription = startIconContentDescription
                 )
             }
         },
@@ -59,21 +52,21 @@ fun TopBar(
 @Preview(showBackground = true)
 @Composable
 fun TopBarWithMenuPreview() {
-    BirthdayAppTopBar(
+    TopBar(
         title = "Venneliste",
-        navigationIcon = Icons.Filled.Menu,
-        navigationIconContentDescription = "Åpne navigasjonsmeny",
-        onNavigationIconClick = {}
+        startIcon = Icons.Filled.Menu,
+        startIconContentDescription = "Åpne navigasjonsmeny",
+        onStartIconClick = {}
     )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun TopBarWithBackActionPreview() {
-    BirthdayAppTopBar(
+    TopBar(
         title = "Ny venn",
-        navigationIcon = Icons.AutoMirrored.Filled.ArrowBack,
-        navigationIconContentDescription = "Tilbake",
-        onNavigationIconClick = {}
+        startIcon = Icons.AutoMirrored.Filled.ArrowBack,
+        startIconContentDescription = "Tilbake",
+        onStartIconClick = {}
     )
 }

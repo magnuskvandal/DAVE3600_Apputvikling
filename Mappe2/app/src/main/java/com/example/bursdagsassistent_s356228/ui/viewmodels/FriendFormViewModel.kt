@@ -12,9 +12,9 @@ class FriendFormViewModel(
     private val friendRepository: FriendRepository,
     application: Application): AndroidViewModel(application) {
 
-        fun addFriend(name: String, phoneNumber: String, dateOfBirth: LocalDate){
+        fun addFriend(firstName: String, lastName: String, phoneNumber: String, dateOfBirth: LocalDate){
             viewModelScope.launch{
-                friendRepository.insertFriend(Friend(name = name, phoneNumber = phoneNumber, dateOfBirth = dateOfBirth)
+                friendRepository.insertFriend(Friend(firstName = firstName,lastName = lastName, phoneNumber = phoneNumber, dateOfBirth = dateOfBirth)
            )
        }
     }
