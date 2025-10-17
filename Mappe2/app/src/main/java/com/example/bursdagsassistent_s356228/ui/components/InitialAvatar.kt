@@ -23,7 +23,7 @@ fun InitialAvatar(
     lastName: String,
     size: Dp
 ) {
-    val initials = "${firstName.firstOrNull() ?: ""}${lastName.firstOrNull() ?: ""}".uppercase()
+    val initials = "${firstName.firstOrNull()}${lastName.firstOrNull()}".uppercase()
 
     Box(
         modifier = modifier

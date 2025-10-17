@@ -66,7 +66,7 @@ fun FriendFormScreen(
                 value = uiState.firstName,
                 onValueChange = { input -> viewModel.updateFirstName(firstName = input) },
                 singleLine = true,
-                label = { Text(text = "Fornavn") },
+                label = { Text(text = stringResource(R.string.form_label_firstname)) },
                 modifier = Modifier.fillMaxWidth(),
                 leadingIcon = { Icon(imageVector = Icons.Outlined.Person, contentDescription = stringResource(R.string.form_label_firstname))},
                 trailingIcon = {
@@ -90,7 +90,7 @@ fun FriendFormScreen(
                 value = uiState.lastName,
                 onValueChange = { input -> viewModel.updateLastName(lastName = input) },
                 singleLine = true,
-                label = { Text(text = "Etternavn") },
+                label = { Text(text = stringResource(R.string.form_label_lastname)) },
                 modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
                 leadingIcon = { Icon(imageVector = Icons.Outlined.Person, contentDescription = stringResource(R.string.form_label_lastname))},
                 trailingIcon = {
@@ -114,7 +114,7 @@ fun FriendFormScreen(
             OutlinedTextField(
                 value = uiState.phoneNumber,
                 onValueChange = { input -> viewModel.updatePhoneNumber(phoneNumber = input) },
-                label = { Text(text = "Telefonnummer") },
+                label = { Text(text = stringResource(R.string.form_label_phone)) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
                 leadingIcon = { Icon(imageVector = Icons.Outlined.Phone, contentDescription = stringResource(R.string.form_label_phone))},
@@ -159,8 +159,7 @@ fun FriendFormScreen(
                     disabledLeadingIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
                     disabledTrailingIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
                     disabledBorderColor = if(uiState.dateOfBirthError) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.outline,
-                    disabledPlaceholderColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                    disabledLabelColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                    disabledLabelColor = if(uiState.dateOfBirthError) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             )
 

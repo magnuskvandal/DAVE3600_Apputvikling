@@ -22,10 +22,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bursdagsassistent_s356228.R
+import com.example.bursdagsassistent_s356228.ui.components.BirthdayCountdownCircle
 import com.example.bursdagsassistent_s356228.ui.components.DeleteConfirmationDialog
 import com.example.bursdagsassistent_s356228.ui.components.FriendDetailItem
 import com.example.bursdagsassistent_s356228.ui.components.FriendDetailsActionMenu
-import com.example.bursdagsassistent_s356228.ui.components.InitialAvatar
 import com.example.bursdagsassistent_s356228.ui.components.TopBar
 import com.example.bursdagsassistent_s356228.ui.viewmodels.AppViewModelProvider
 import com.example.bursdagsassistent_s356228.ui.viewmodels.FriendDetailsViewModel
@@ -81,9 +81,8 @@ fun FriendDetailsScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Spacer(modifier = Modifier.height(32.dp))
-                InitialAvatar(
-                    firstName = currentFriend.firstName,
-                    lastName = currentFriend.lastName,
+                BirthdayCountdownCircle(
+                    birthDate = currentFriend.dateOfBirth,
                     size = 200.dp
                 )
                 Spacer(modifier = Modifier.height(32.dp))

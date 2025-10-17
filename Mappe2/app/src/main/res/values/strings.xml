@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Bursdagsassistent_s356228</string>
-    <string name="friend_card_birthday_today">Har bursdag i dag!</string>
-    <string name="friend_card_birthday_tomorrow">Har bursdag i morgen!</string>
-    <string name="friend_card_birthday_in_days">Har bursdag om %1$d dager</string>
+    <string name="birthday_today">Bursdag i dag!</string>
+    <string name="friend_list_birthday_tomorrow">Bursdag om %1$d</string>
+    <string name="friend_list_birthday_in_days">Bursdag om %1$d dager</string>
+    <string name="countdown_day_to_birthday">dag til bursdag</string>
+    <string name="countdown_days_to_birthday">dager til bursdag</string>
     <string name="friend_full_name">%1$s %2$s</string>
     <string name="delete_friend_description">Slett venn</string>
     <string name="friend_list_title">Venneliste</string>

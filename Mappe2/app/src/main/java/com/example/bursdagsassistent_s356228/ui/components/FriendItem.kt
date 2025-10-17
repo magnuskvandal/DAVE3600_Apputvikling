@@ -1,6 +1,5 @@
 package com.example.bursdagsassistent_s356228.ui.components
 
-import android.content.Context
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -25,8 +24,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.bursdagsassistent_s356228.R
 import com.example.bursdagsassistent_s356228.data.model.Friend
+import com.example.bursdagsassistent_s356228.utils.getBirthdayStatusForListItem
 import java.time.LocalDate
-import java.time.temporal.ChronoUnit
 
 @Composable
 fun FriendItem(
@@ -61,7 +60,7 @@ fun FriendItem(
                     style = MaterialTheme.typography.headlineSmall
                 )
                 Text(
-                    text = getBirthdayStatus(birthDate = friend.dateOfBirth, context = LocalContext.current),
+                    text = getBirthdayStatusForListItem(birthDate = friend.dateOfBirth, context = LocalContext.current),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.outline
                 )
@@ -73,23 +72,6 @@ fun FriendItem(
 
             )
         }
-    }
-}
-
-fun getBirthdayStatus(birthDate: LocalDate, context: Context): String {
-    val today = LocalDate.now()
-    val nextBirthday = birthDate.withYear(today.year)
-    val finalNextBirthday = if (nextBirthday.isBefore(today)) {
-        nextBirthday.plusYears(1)
-    } else {
-        nextBirthday
-    }
-    val daysUntil = ChronoUnit.DAYS.between(today, finalNextBirthday)
-
-    return when (daysUntil) {
-        0L -> context.getString(R.string.friend_card_birthday_today)
-        1L -> context.getString(R.string.friend_card_birthday_tomorrow)
-        else -> context.getString(R.string.friend_card_birthday_in_days, daysUntil)
     }
 }
 
