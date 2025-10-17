@@ -16,7 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.example.bursdagsassistent_s356228.R
-import com.example.bursdagsassistent_s356228.ui.components.AppDrawer
+import com.example.bursdagsassistent_s356228.ui.components.DrawerContent
 import com.example.bursdagsassistent_s356228.ui.components.TopBar
 import kotlinx.coroutines.launch
 
@@ -27,11 +27,11 @@ fun PreferencesScreen(
 ){
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
-
     ModalNavigationDrawer(
+        modifier = modifier,
         drawerState = drawerState,
         drawerContent = {
-            AppDrawer(
+            DrawerContent(
                 onFriendListClick = {
                     onFriendListClick()
                     scope.launch { drawerState.close() }
@@ -41,9 +41,9 @@ fun PreferencesScreen(
                 isPreferencesSelected = true
             )
         }
-    ) {
+    ){
         Scaffold(
-            topBar = {
+        topBar = {
                 TopBar(
                     title = stringResource(R.string.preferences_title),
                     startIcon = Icons.Default.Menu,

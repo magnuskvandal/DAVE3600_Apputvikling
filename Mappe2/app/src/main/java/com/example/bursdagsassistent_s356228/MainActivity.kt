@@ -15,7 +15,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             Bursdagsassistent_s356228Theme {
                 val navController = rememberNavController()
-                AppNavigation(navController = navController)
+                AppNavigation(
+                    navController = navController
+                )
             }
         }
     }

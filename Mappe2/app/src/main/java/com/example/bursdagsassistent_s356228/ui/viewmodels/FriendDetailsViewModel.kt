@@ -10,17 +10,22 @@ import com.example.bursdagsassistent_s356228.ui.navigation.AppDestinations
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
-class FriendDetailsViewModel(
-    private val friendRepository: FriendRepository,
-    savedStateHandle: SavedStateHandle,
-    application: Application
-    ): AndroidViewModel(application) {
-        private val friendId: Int = checkNotNull(savedStateHandle[AppDestinations.FRIEND_ID])
+class FriendDetailsViewModel(private val friendRepository: FriendRepository, savedStateHandle: SavedStateHandle, application: Application): AndroidViewModel(application) {
+    private val friendId: Int = checkNotNull(savedStateHandle[AppDestinations.FRIEND_ID])
         val friend: StateFlow<Friend?> = friendRepository.getFriendById(id = friendId)
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.Lazily,
                 initialValue = null
             )
+
+    fun deleteFriend(friend: Friend) {
+        viewModelScope.launch {
+            friendRepository.deleteFriend(friend)
+        }
+    }
+
+
 }

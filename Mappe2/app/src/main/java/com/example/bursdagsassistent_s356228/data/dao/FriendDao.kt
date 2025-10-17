@@ -22,7 +22,7 @@ interface FriendDao {
     @Delete
     suspend fun deleteFriend(friend: Friend)
 
-    @Query(value = "SELECT * FROM friend_table ORDER BY firstName ASC, lastName ASC")
+    @Query(value = "SELECT * FROM friend_table ORDER BY firstName COLLATE LOCALIZED ASC, lastName COLLATE LOCALIZED ASC")
     fun getAllFriends(): Flow<List<Friend>>
 
     @Query(value = "SELECT * FROM friend_table WHERE id = :id")

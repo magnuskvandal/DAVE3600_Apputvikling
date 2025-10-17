@@ -1,5 +1,7 @@
 package com.example.bursdagsassistent_s356228.ui.components
 
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Menu
@@ -15,48 +17,40 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(
-    title: String,
-    startIcon: ImageVector,
-    startIconContentDescription: String,
-    onStartIconClick: () -> Unit,
+    title: String = "" ,
     modifier: Modifier = Modifier,
-    endIcon: ImageVector? = null, // Valgfritt ikon
-    endIconContentDescription: String? = null, // Valgfri beskrivelse
-    onEndIconClick: (() -> Unit)? = null // Valgfri klikk-håndterer
+    startIcon: ImageVector? = null,
+    startIconContentDescription: String? = null,
+    onStartIconClick: () -> Unit = {},
+    actions: @Composable RowScope.() -> Unit = {}
 ) {
     CenterAlignedTopAppBar(
         title = {
             Text(
                 text = title,
                 style = MaterialTheme.typography.headlineMedium,
-                fontWeight = FontWeight.Normal
+                fontWeight = FontWeight.Normal,
             )
         },
         modifier = modifier,
         navigationIcon = {
-            IconButton(onClick = onStartIconClick) {
-                Icon(
-                    imageVector = startIcon,
-                    contentDescription = startIconContentDescription
-                )
-            }
-        },
-        actions = {
-            if (endIcon != null && onEndIconClick != null) {
-                IconButton(onClick = onEndIconClick) {
+            if (startIcon != null) {
+                IconButton(onClick = onStartIconClick) {
                     Icon(
-                        imageVector = endIcon,
-                        contentDescription = endIconContentDescription
+                        imageVector = startIcon,
+                        contentDescription = startIconContentDescription
                     )
                 }
             }
         },
+        actions = actions,
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer
+            containerColor = MaterialTheme.colorScheme.background
         )
     )
 }

@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.bursdagsassistent_s356228.ui.screens.FriendDetailsScreen
+import com.example.bursdagsassistent_s356228.ui.screens.FriendFormScreen
 import com.example.bursdagsassistent_s356228.ui.screens.FriendListScreen
 import com.example.bursdagsassistent_s356228.ui.screens.PreferencesScreen
 
@@ -31,9 +32,11 @@ fun AppNavigation(
                 onFriendClick = { friendId ->
                     navController.navigate(route = "${AppDestinations.FRIEND_DETAILS}/$friendId")
                 },
-                onAddFriendClick = { /* Kommer senere */ },
+                onAddFriendClick = {
+                    navController.navigate(route = AppDestinations.FRIEND_FORM)
+                },
                 onPreferencesClick = {
-                    navController.navigate(AppDestinations.PREFERENCES) {
+                    navController.navigate(route = AppDestinations.PREFERENCES) {
                         popUpTo(navController.graph.startDestinationId) { saveState = true }
                         launchSingleTop = true
                         restoreState = true
@@ -45,7 +48,7 @@ fun AppNavigation(
         composable(route = AppDestinations.PREFERENCES) {
             PreferencesScreen(
                 onFriendListClick = {
-                    navController.navigate(AppDestinations.FRIEND_LIST) {
+                    navController.navigate(route = AppDestinations.FRIEND_LIST) {
                         popUpTo(navController.graph.startDestinationId) { saveState = true }
                         launchSingleTop = true
                         restoreState = true
@@ -56,11 +59,29 @@ fun AppNavigation(
 
         composable(
             route = "${AppDestinations.FRIEND_DETAILS}/{${AppDestinations.FRIEND_ID}}",
-            arguments = listOf(navArgument(AppDestinations.FRIEND_ID) { type = NavType.IntType })
+            arguments = listOf(navArgument(name = AppDestinations.FRIEND_ID) { type = NavType.IntType })
         ) {
             FriendDetailsScreen(
-                onNavigate = { navController.popBackStack() },
-                onEditClick = { /* Kommer senere */ }
+                onNavigate = { navController.navigateUp() },
+                onEditClick = { friendId ->
+                    navController.navigate( route = "${AppDestinations.FRIEND_FORM}/$friendId")
+                }
+            )
+        }
+
+
+        composable(route = AppDestinations.FRIEND_FORM) {
+            FriendFormScreen(
+                onNavigate = { navController.navigateUp() }
+            )
+        }
+
+        composable(
+            route = "${AppDestinations.FRIEND_FORM}/{${AppDestinations.FRIEND_ID}}",
+            arguments = listOf(navArgument(name = AppDestinations.FRIEND_ID) { type = NavType.IntType })
+        ){
+            FriendFormScreen(
+                onNavigate = { navController.navigateUp() }
             )
         }
     }

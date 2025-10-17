@@ -1,29 +1,27 @@
 package com.example.bursdagsassistent_s356228.ui.components
 
+import android.content.Context
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
+import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.bursdagsassistent_s356228.R
 import com.example.bursdagsassistent_s356228.data.model.Friend
@@ -31,72 +29,81 @@ import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 
 @Composable
-fun FriendCard(
+fun FriendItem(
     friend: Friend,
     onClick: () -> Unit,
-    onDelete: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val daysUntilBirthday = calculateDaysUntilNextBirthday(birthDate = friend.dateOfBirth)
-
-    val birthdayText = when{
-        daysUntilBirthday == 0L -> stringResource(R.string.friend_card_birthday_today)
-        daysUntilBirthday == 1L -> stringResource(R.string.friend_card_birthday_tomorrow)
-        else -> stringResource(id = R.string.friend_card_birthday_in_days, daysUntilBirthday)
-    }
-
-    Card(
+    Box(
         modifier = modifier
             .fillMaxWidth()
             .border(width = 0.3.dp, color = Color.Gray)
-            .clickable(onClick = onClick),
-        shape = RectangleShape,
-        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
+            .clickable(onClick = onClick)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Icon(
-                imageVector = Icons.Default.AccountCircle,
-                contentDescription = stringResource(R.string.person_icon_description),
-                modifier = Modifier
-                    .padding(start = 16.dp)
-                    .size(50.dp)
+            InitialAvatar(
+                modifier = Modifier.padding(15.dp),
+                firstName = friend.firstName,
+                lastName = friend.lastName,
+                size = 50.dp
             )
             Spacer(modifier = Modifier.width(16.dp))
             Column(
                 modifier = Modifier
                     .weight(1f)
-                    .padding(vertical = 12.dp)
+                    .padding(vertical = 15.dp)
             ) {
                 Text(
                     text = stringResource(id = R.string.friend_full_name, friend.firstName, friend.lastName),
                     style = MaterialTheme.typography.headlineSmall
                 )
                 Text(
-                    text = birthdayText,
+                    text = getBirthdayStatus(birthDate = friend.dateOfBirth, context = LocalContext.current),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.outline
                 )
             }
-            IconButton(
-                onClick = onDelete,
-                modifier = Modifier.padding(end = 8.dp)
-            ) {
-                Icon(imageVector = Icons.Default.Delete, contentDescription = stringResource(R.string.delete_friend_description))
-            }
+            Icon(
+                modifier = modifier.padding(end = 15.dp),
+                imageVector = Icons.Default.ChevronRight,
+                contentDescription = stringResource(id = R.string.view_details_icon_description),
+
+            )
         }
     }
 }
 
-private fun calculateDaysUntilNextBirthday(birthDate: LocalDate): Long {
+fun getBirthdayStatus(birthDate: LocalDate, context: Context): String {
     val today = LocalDate.now()
-    var nextBirthday = birthDate.withYear(today.year)
-
-    if (nextBirthday.isBefore(today)) {
-        nextBirthday = nextBirthday.plusYears(1)
+    val nextBirthday = birthDate.withYear(today.year)
+    val finalNextBirthday = if (nextBirthday.isBefore(today)) {
+        nextBirthday.plusYears(1)
+    } else {
+        nextBirthday
     }
+    val daysUntil = ChronoUnit.DAYS.between(today, finalNextBirthday)
 
-    return ChronoUnit.DAYS.between(today, nextBirthday)
+    return when (daysUntil) {
+        0L -> context.getString(R.string.friend_card_birthday_today)
+        1L -> context.getString(R.string.friend_card_birthday_tomorrow)
+        else -> context.getString(R.string.friend_card_birthday_in_days, daysUntil)
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun FriendCardPreview() {
+    FriendItem(
+        friend = Friend(
+            id = 1,
+            firstName = "Magnus",
+            lastName = "Kvandal",
+            phoneNumber = "12345678",
+            dateOfBirth = LocalDate.of(1990, 5, 15)
+        ),
+        onClick = {},
+    )
 }

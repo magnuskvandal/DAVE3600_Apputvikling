@@ -9,9 +9,11 @@ import com.example.bursdagsassistent_s356228.BirthdayAssistantApplication
 object AppViewModelProvider {
     val Factory = viewModelFactory{
         initializer{
+            val savedStateHandle = createSavedStateHandle()
             val application = (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as BirthdayAssistantApplication)
             FriendFormViewModel(
                 friendRepository = application.friendRepository,
+                savedStateHandle = savedStateHandle,
                 application = application
             )
         }
