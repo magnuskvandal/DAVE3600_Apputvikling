@@ -33,5 +33,12 @@ object AppViewModelProvider {
                 application = application
             )
         }
+        initializer {
+            val application = (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as BirthdayAssistantApplication)
+            PreferencesViewModel(
+                preferencesRepository = application.preferencesRepository,
+                application = application
+            )
+        }
     }
 }

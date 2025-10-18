@@ -49,9 +49,9 @@ fun FriendListScreen(
     modifier: Modifier = Modifier,
     onFriendClick: (Int) -> Unit,
     onAddFriendClick: () -> Unit,
-    onPreferencesClick: () -> Unit
+    onPreferencesClick: () -> Unit,
+    viewModel: FriendListViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
-    val viewModel: FriendListViewModel = viewModel(factory = AppViewModelProvider.Factory)
     val groupedFriends by viewModel.groupedFriends.collectAsState()
     val collapsedGroups by viewModel.collapsedGroups.collectAsState()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)

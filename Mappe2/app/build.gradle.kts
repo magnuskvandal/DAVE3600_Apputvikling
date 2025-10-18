@@ -42,6 +42,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.work.runtime.ktx)
     implementation(libs.androidx.compose.material.icons.extended)
     coreLibraryDesugaring(libs.desugar.jdk.libs)
     implementation(libs.androidx.room.runtime)

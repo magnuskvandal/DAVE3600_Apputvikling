@@ -37,8 +37,8 @@ fun FriendDetailsScreen(
     modifier: Modifier = Modifier,
     onNavigate: () -> Unit,
     onEditClick: (Int) -> Unit,
+    viewModel: FriendDetailsViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
-    val viewModel: FriendDetailsViewModel = viewModel(factory = AppViewModelProvider.Factory)
     val friend by viewModel.friend.collectAsState()
     var showDeleteConfirmationDialog by rememberSaveable { mutableStateOf(false) }
 

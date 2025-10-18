@@ -165,7 +165,9 @@ fun FriendFormScreen(
 
             Button(
                 onClick = { viewModel.saveFriend(onSuccess = onNavigate) },
-                modifier = Modifier.fillMaxWidth().padding(top = 16.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 16.dp),
             ) {
                 Text(text = if (uiState.id != 0) stringResource(R.string.form_button_update_friend) else stringResource(R.string.form_button_save_friend))
             }
