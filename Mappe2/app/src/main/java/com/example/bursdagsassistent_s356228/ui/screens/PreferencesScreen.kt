@@ -8,8 +8,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.OutlinedTextField
@@ -84,7 +89,7 @@ fun PreferencesScreen(
                     verticalAlignment = Alignment.CenterVertically
                 ){
                     Text(
-                        text = "Aktiver SMS-tjeneste",
+                        text = stringResource(R.string.enable_sms_service),
                         modifier = Modifier.weight(1f)
                     )
                     Switch(
@@ -100,12 +105,58 @@ fun PreferencesScreen(
                 }
 
                 AnimatedVisibility(visible = uiState.smsServiceEnabled) {
-                    OutlinedTextField(
-                        value = uiState.defaultSmsMessage,
-                        onValueChange = { input -> viewModel.updateDefaultSmsMessage(message = input) },
-                        label = { Text("Standard SMS-melding") },
-                        modifier = Modifier.fillMaxWidth()
-                    )
+                    if (uiState.isEditingDefaultSmsMessage) {
+                        OutlinedTextField(
+                            value = uiState.editableMessage,
+                            onValueChange = {
+                                input -> viewModel.onEditableMessageChange(newMessage = input)
+                            },
+                            label = { Text(text = stringResource(R.string.default_sms_message_label)) },
+                            modifier = Modifier.fillMaxWidth(),
+                            trailingIcon = {
+                                Row{
+                                    IconButton(onClick = { viewModel.cancelEditingMessage() }) {
+                                        Icon(
+                                            imageVector = Icons.Default.Close,
+                                            contentDescription = stringResource(R.string.cancel_editing_icon_description)
+                                        )
+                                    }
+                                    IconButton(onClick = { viewModel.updateDefaultSmsMessage() }) {
+                                        Icon(
+                                            imageVector = Icons.Default.Done,
+                                            contentDescription = stringResource(R.string.save_message_icon_description)
+                                        )
+                                    }
+                                }
+                            }
+                        )
+                    }else {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Column(
+                                modifier = Modifier.weight(1f),
+                                verticalArrangement = Arrangement.spacedBy(4.dp)
+                            ) {
+                                Text(
+                                    text = stringResource(R.string.default_sms_message_label),
+                                    style = MaterialTheme.typography.titleSmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                                Text(
+                                    text = uiState.defaultSmsMessage,
+                                    style = MaterialTheme.typography.bodyLarge
+                                )
+                            }
+                            IconButton(onClick = { viewModel.startEditingMessage() }) {
+                                Icon(
+                                    imageVector = Icons.Default.Edit,
+                                    contentDescription = stringResource(R.string.edit_message_icon_description)
+                                )
+                            }
+                        }
+                    }
                 }
             }
         }

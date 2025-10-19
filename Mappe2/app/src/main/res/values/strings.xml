@@ -37,4 +37,9 @@
     <string name="edit_calendar_icon_description">Velg dato</string>
     <string name="form_button_update_friend">Oppdater venn</string>
     <string name ="form_button_save_friend">Lagre venn</string>
+    <string name="enable_sms_service">Aktiver SMS-tjeneste</string>
+    <string name="default_sms_message_label">Standard SMS-melding</string>
+    <string name="cancel_editing_icon_description">Avbryt endring</string>
+    <string name="save_message_icon_description">Lagre melding</string>
+    <string name="edit_message_icon_description">Endre melding</string>
 </resources>
