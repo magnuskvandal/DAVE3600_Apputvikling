@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,13 +30,13 @@ fun InitialAvatar(
         modifier = modifier
             .size(size)
             .clip(shape = CircleShape)
-            .background(Color(0xFFFFB74D))
+            .background(MaterialTheme.colorScheme.primary)
         ,
         contentAlignment = Alignment.Center
     ) {
         Text(
             text = initials,
-            color = Color.Black,
+            color = MaterialTheme.colorScheme.onPrimary,
             fontWeight = FontWeight.Bold,
             fontSize = (size.value / 2.5).sp,
         )

@@ -34,7 +34,7 @@ fun BirthdayCountdownCircle(
         modifier = modifier
             .size(size)
             .clip(shape = CircleShape)
-            .background(MaterialTheme.colorScheme.tertiaryContainer),
+            .background(MaterialTheme.colorScheme.primary),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -45,25 +45,25 @@ fun BirthdayCountdownCircle(
                     imageVector = Icons.Filled.Cake,
                     contentDescription = "Bursdagskake",
                     modifier = Modifier.size(size / 2.5f),
-                    tint = MaterialTheme.colorScheme.onTertiaryContainer
+                    tint = MaterialTheme.colorScheme.onPrimary
                 )
                 Text(
                     text = countdownInfo.bottomText,
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onTertiaryContainer
+                    color = MaterialTheme.colorScheme.onPrimary
                 )
             } else {
                 Text(
                     text = countdownInfo.topText,
                     style = MaterialTheme.typography.displayLarge,
                     fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onTertiaryContainer,
+                    color = MaterialTheme.colorScheme.onPrimary,
                 )
                 Text(
                     text = countdownInfo.bottomText,
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onTertiaryContainer
+                    style = MaterialTheme.typography.titleLarge,
+                    color = MaterialTheme.colorScheme.onPrimary
                 )
             }
         }

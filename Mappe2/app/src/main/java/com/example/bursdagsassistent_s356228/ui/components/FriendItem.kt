@@ -1,5 +1,6 @@
 package com.example.bursdagsassistent_s356228.ui.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -17,7 +18,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,7 +36,7 @@ fun FriendItem(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .border(width = 0.3.dp, color = Color.Gray)
+            .background(MaterialTheme.colorScheme.surface)
             .clickable(onClick = onClick)
     ) {
         Row(
@@ -57,19 +57,19 @@ fun FriendItem(
             ) {
                 Text(
                     text = stringResource(id = R.string.friend_full_name, friend.firstName, friend.lastName),
-                    style = MaterialTheme.typography.headlineSmall
+                    style = MaterialTheme.typography.headlineSmall,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
                 Text(
                     text = getBirthdayStatusForListItem(birthDate = friend.dateOfBirth, context = LocalContext.current),
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.outline
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
             Icon(
                 modifier = modifier.padding(end = 15.dp),
                 imageVector = Icons.Default.ChevronRight,
                 contentDescription = stringResource(id = R.string.view_details_icon_description),
-
             )
         }
     }

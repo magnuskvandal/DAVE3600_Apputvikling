@@ -3,6 +3,7 @@ package com.example.bursdagsassistent_s356228.ui.screens
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -84,6 +85,8 @@ fun FriendListScreen(
                 FloatingActionButton(
                     onClick = onAddFriendClick,
                     shape = CircleShape,
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary,
                     elevation = FloatingActionButtonDefaults.elevation(
                         defaultElevation = 8.dp,
                         pressedElevation = 12.dp
@@ -116,7 +119,7 @@ fun FriendListScreen(
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .background(color = MaterialTheme.colorScheme.surfaceVariant)
+                                    .background(color = MaterialTheme.colorScheme.background)
                                     .clickable { viewModel.toggleGroup(initial) }
                                     .padding(horizontal = 16.dp, vertical = 8.dp),
                                 verticalAlignment = Alignment.CenterVertically
@@ -124,7 +127,8 @@ fun FriendListScreen(
                                 Text(
                                     text = initial.toString(),
                                     style = MaterialTheme.typography.titleSmall,
-                                    modifier = Modifier.weight(1f)
+                                    modifier = Modifier.weight(1f),
+                                    color = MaterialTheme.colorScheme.onBackground
                                 )
                                 val icon = if (isExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown
                                 Icon(
@@ -134,7 +138,7 @@ fun FriendListScreen(
                                     }else{
                                         stringResource(R.string.group_collapsed_icon_description)
 
-                                    }
+                                    },
                                 )
                             }
                         }

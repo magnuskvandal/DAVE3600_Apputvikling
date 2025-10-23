@@ -24,6 +24,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bursdagsassistent_s356228.R
@@ -43,6 +44,14 @@ fun FriendFormScreen(
     val uiState by viewModel.uiState.collectAsState()
     var showDatePicker by remember { mutableStateOf(value = false) }
     val textFieldErrorMsg = stringResource(R.string.form_field_required)
+    val textFieldColors = OutlinedTextFieldDefaults.colors(
+        unfocusedLabelColor = MaterialTheme.colorScheme.onBackground,
+        focusedLabelColor = MaterialTheme.colorScheme.onBackground,
+        unfocusedLeadingIconColor = MaterialTheme.colorScheme.onBackground,
+        focusedLeadingIconColor = MaterialTheme.colorScheme.onBackground,
+        unfocusedTrailingIconColor = MaterialTheme.colorScheme.onBackground,
+        focusedTrailingIconColor = MaterialTheme.colorScheme.onBackground
+    )
 
     Scaffold(
         modifier = modifier,
@@ -83,7 +92,8 @@ fun FriendFormScreen(
                     if(uiState.firstNameError){
                         Text(text = textFieldErrorMsg, color = MaterialTheme.colorScheme.error)
                     }
-                }
+                },
+                colors = textFieldColors
             )
 
             OutlinedTextField(
@@ -107,7 +117,8 @@ fun FriendFormScreen(
                     if(uiState.lastNameError){
                         Text(text = textFieldErrorMsg, color = MaterialTheme.colorScheme.error)
                     }
-                }
+                },
+                colors = textFieldColors
             )
 
 
@@ -132,7 +143,8 @@ fun FriendFormScreen(
                     if(uiState.phoneNumberError){
                         Text(text = textFieldErrorMsg, color = MaterialTheme.colorScheme.error)
                     }
-                }
+                },
+                colors = textFieldColors
             )
 
 
@@ -156,10 +168,10 @@ fun FriendFormScreen(
                 },
                 colors = OutlinedTextFieldDefaults.colors(
                     disabledTextColor = MaterialTheme.colorScheme.onSurface,
-                    disabledLeadingIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                    disabledTrailingIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                    disabledLeadingIconColor = MaterialTheme.colorScheme.onBackground,
+                    disabledTrailingIconColor = MaterialTheme.colorScheme.onBackground,
                     disabledBorderColor = if(uiState.dateOfBirthError) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.outline,
-                    disabledLabelColor = if(uiState.dateOfBirthError) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant,
+                    disabledLabelColor = if(uiState.dateOfBirthError) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onBackground,
                 )
             )
 
@@ -169,7 +181,18 @@ fun FriendFormScreen(
                     .fillMaxWidth()
                     .padding(top = 16.dp),
             ) {
-                Text(text = if (uiState.id != 0) stringResource(R.string.form_button_update_friend) else stringResource(R.string.form_button_save_friend))
+                Text(
+                    text =
+                        if (uiState.id != 0) {
+                            stringResource(R.string.form_button_update_friend)
+                        }
+
+                        else {
+                            stringResource(R.string.form_button_save_friend)
+                        },
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Normal
+                )
             }
         }
 

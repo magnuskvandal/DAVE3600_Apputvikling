@@ -42,4 +42,7 @@
     <string name="cancel_editing_icon_description">Avbryt endring</string>
     <string name="save_message_icon_description">Lagre melding</string>
     <string name="edit_message_icon_description">Endre melding</string>
+    <string name="info_icon_description">Info</string>
+    <string name="app_logo_image_description">Applogo</string>
+    <string name="application_name">Birthday Assistant</string>
 </resources>

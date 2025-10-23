@@ -29,10 +29,11 @@ fun FriendDetailItem(
             Text(
                 text = value,
                 style = MaterialTheme.typography.headlineSmall,
-                modifier = Modifier.padding(top = 2.dp)
+                modifier = Modifier.padding(top = 2.dp),
+                color = MaterialTheme.colorScheme.onBackground
             )
         }
-        HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+        HorizontalDivider(color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.2f))
     }
 }
 
