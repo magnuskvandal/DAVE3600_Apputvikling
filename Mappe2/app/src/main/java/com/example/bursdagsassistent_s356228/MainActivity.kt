@@ -12,6 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.bursdagsassistent_s356228.ui.navigation.AppNavigation
 import com.example.bursdagsassistent_s356228.ui.theme.Bursdagsassistent_s356228Theme
 import android.Manifest
+import com.example.bursdagsassistent_s356228.ui.BursdagsassistenApp
 
 class MainActivity : ComponentActivity() {
     private val requestSmsPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()){
@@ -31,12 +32,7 @@ class MainActivity : ComponentActivity() {
         }
         enableEdgeToEdge()
         setContent {
-            Bursdagsassistent_s356228Theme {
-                val navController = rememberNavController()
-                AppNavigation(
-                    navController = navController
-                )
-            }
+            BursdagsassistenApp()
         }
     }
 }
