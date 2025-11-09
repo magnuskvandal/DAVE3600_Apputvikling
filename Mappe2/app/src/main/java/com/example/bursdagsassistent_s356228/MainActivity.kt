@@ -8,9 +8,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import androidx.navigation.compose.rememberNavController
-import com.example.bursdagsassistent_s356228.ui.navigation.AppNavigation
-import com.example.bursdagsassistent_s356228.ui.theme.Bursdagsassistent_s356228Theme
 import android.Manifest
 import com.example.bursdagsassistent_s356228.ui.BursdagsassistenApp
 

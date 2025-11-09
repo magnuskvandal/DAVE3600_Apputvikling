@@ -7,6 +7,9 @@ import com.example.bursdagsassistent_s356228.repositories.FriendRepository
 import com.example.bursdagsassistent_s356228.repositories.PreferencesRepository
 
 class BirthdayAssistantApplication: Application() {
+
+    lateinit var database: AppDatabase
+        private set
     lateinit var friendRepository: FriendRepository
         private set
     lateinit var preferencesRepository: PreferencesRepository
@@ -15,7 +18,7 @@ class BirthdayAssistantApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        val database = Room.databaseBuilder(
+        database = Room.databaseBuilder(
             applicationContext,
             AppDatabase::class.java,
             "birthday_assistant_database"
