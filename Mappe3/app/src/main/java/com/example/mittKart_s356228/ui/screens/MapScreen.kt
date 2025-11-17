@@ -34,7 +34,7 @@ fun MapScreen(
 
     val oslo = LatLng(59.911491, 10.757933)
     val cameraPositionState = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom(oslo, 12f)
+        position = CameraPosition.fromLatLngZoom(oslo, 11f)
     }
 
 

@@ -9,7 +9,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.mittKart_s356228.R
 
 @Composable
 fun DeleteConfirmationDialog(
@@ -21,25 +23,25 @@ fun DeleteConfirmationDialog(
         icon = {
             Icon(
                 imageVector = Icons.Outlined.Warning,
-                contentDescription = "Advarsel",
+                contentDescription = stringResource(R.string.delete_dialog_warning_icon_description),
                 modifier = Modifier.size(32.dp)
             )
         },
         title = {
-            Text(text = "Slette sted?")
+            Text(text = stringResource(R.string.delete_dialog_title))
         },
         text = {
-            Text(text = "Er du sikker på at du vil slette $placeName")
+            Text(text = stringResource(R.string.delete_dialog_message, placeName))
         },
         onDismissRequest = onDismiss,
         confirmButton = {
             TextButton(onClick = onConfirm){
-                Text(text = "Slett")
+                Text(text = stringResource(R.string.delete_dialog_confirm_button))
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss){
-                Text(text = "Avbryt")
+                Text(text = stringResource(R.string.delete_dialog_dismiss_button))
             }
         }
     )

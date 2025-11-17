@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">MittKart_s356228</string>
+    <string name="close_sheet_button">Lukk</string>
+    <string name="add_place_title">Legg til et nytt sted</string>
+    <string name="add_place_selected_address">VALGT ADRESSE</string>
+    <string name="add_place_name_label">Navn</string>
+    <string name="add_place_save_button">Lagre</string>
+    <string name="add_place_required_field">Dette feltet er påkrevd</string>
+    <string name="add_place_cancel_icon_description">Tøm feltet</string>
+    <string name="add_place_location_icon_description">Stedsnavn</string>
+    <string name="add_place_info_icon_description">Beskrivelse av sted</string>
+    <string name="delete_dialog_warning_icon_description">Advarsel</string>
+    <string name="delete_dialog_title">Slette sted?</string>
+    <string name="delete_dialog_message">Er du sikker på at du vil slette %1$s?</string>
+    <string name="delete_dialog_confirm_button">Slett</string>
+    <string name="delete_dialog_dismiss_button">Avbryt</string>
+    <string name="address_label">Adresse</string>
+    <string name="description_label">Beskrivelse</string>
+    <string name="place_details_delete_button">Slett Sted</string>
 </resources>

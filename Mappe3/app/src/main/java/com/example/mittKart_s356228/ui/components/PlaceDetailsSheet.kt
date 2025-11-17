@@ -16,10 +16,12 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.mittKart_s356228.R
 import com.example.mittKart_s356228.data.Place
 
 @Composable
@@ -42,7 +44,7 @@ fun PlaceDetailsSheet(
                 .padding(8.dp)
         ){
             Text(
-                text = "Lukk",
+                text = stringResource(R.string.close_sheet_button),
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Bold
             )
@@ -62,13 +64,13 @@ fun PlaceDetailsSheet(
             )
             if(!place.address.isNullOrBlank()){
                 PlaceInfoRow(
-                    label = "Adresse",
+                    label = stringResource(R.string.address_label),
                     value = place.address!!
                 )
             }
 
             PlaceInfoRow(
-                label = "Beskrivelse",
+                label = stringResource(R.string.description_label),
                 value = place.description
             )
 
@@ -80,7 +82,7 @@ fun PlaceDetailsSheet(
                     .fillMaxWidth()
                     .padding(bottom = 16.dp)
             ) {
-                Text("Slett Sted")
+                Text(stringResource(R.string.place_details_delete_button))
             }
         }
     }

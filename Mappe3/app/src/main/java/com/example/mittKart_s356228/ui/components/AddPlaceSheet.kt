@@ -22,10 +22,12 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.mittKart_s356228.R
 
 @Composable
 fun AddPlaceSheet(
@@ -49,14 +51,14 @@ fun AddPlaceSheet(
             modifier = Modifier.align(Alignment.TopStart).padding(horizontal = 8.dp, vertical = 4.dp)
         ){
             Text(
-                text = "Lukk",
+                text = stringResource(R.string.close_sheet_button),
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.ExtraBold
             )
         }
 
         Text(
-            text = "Legg til et nytt sted",
+            text = stringResource(R.string.add_place_title),
             style = MaterialTheme.typography.titleLarge,
             modifier = Modifier.align(Alignment.TopCenter).padding(top = 16.dp)
         )
@@ -77,7 +79,7 @@ fun AddPlaceSheet(
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     Text(
-                        text = "VALGT ADRESSE",
+                        text = stringResource(R.string.add_place_selected_address),
                         style = MaterialTheme.typography.labelLarge,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -95,12 +97,12 @@ fun AddPlaceSheet(
             OutlinedTextField(
                 value = name,
                 onValueChange = onNameChange,
-                label = { Text("Navn") },
-                leadingIcon = { Icon(imageVector = Icons.Outlined.LocationOn, contentDescription = null) },
+                label = { Text(stringResource(R.string.add_place_name_label)) },
+                leadingIcon = { Icon(imageVector = Icons.Outlined.LocationOn, contentDescription = stringResource(R.string.add_place_location_icon_description)) },
                 trailingIcon = {
                     if(name.isNotEmpty()){
                         IconButton(onClick = { onNameChange("") }){ 
-                            Icon(imageVector = Icons.Outlined.Cancel, contentDescription = "Tøm feltet") 
+                            Icon(imageVector = Icons.Outlined.Cancel, contentDescription = stringResource(R.string.add_place_cancel_icon_description))
                         }
                     }
                 },
@@ -108,7 +110,7 @@ fun AddPlaceSheet(
                 isError = hasAttemptedSave && name.isBlank(),
                 supportingText = {
                     if(hasAttemptedSave && name.isBlank()){
-                        Text(text = "Dette feltet er påkrevd", color = MaterialTheme.colorScheme.error)
+                        Text(text = stringResource(R.string.add_place_required_field), color = MaterialTheme.colorScheme.error)
                     }
                 },
                 modifier = Modifier.fillMaxWidth()
@@ -119,12 +121,12 @@ fun AddPlaceSheet(
             OutlinedTextField(
                 value = description,
                 onValueChange = onDescriptionChange,
-                label = { Text("Beskrivelse") },
-                leadingIcon = { Icon(imageVector = Icons.Outlined.Info, contentDescription = null) },
+                label = { Text(stringResource(R.string.description_label)) },
+                leadingIcon = { Icon(imageVector = Icons.Outlined.Info, contentDescription = stringResource(R.string.add_place_info_icon_description)) },
                 trailingIcon = {
                     if(description.isNotEmpty()){
                         IconButton(onClick = { onDescriptionChange("") }) {
-                            Icon(imageVector = Icons.Outlined.Cancel, contentDescription = "Tøm feltet")
+                            Icon(imageVector = Icons.Outlined.Cancel, contentDescription = stringResource(R.string.add_place_cancel_icon_description))
                         }
                     }
                 },
@@ -132,7 +134,7 @@ fun AddPlaceSheet(
                 isError = hasAttemptedSave && description.isBlank(),
                 supportingText = {
                     if(hasAttemptedSave && description.isBlank()){
-                        Text(text = "Dette feltet er påkrevd", color = MaterialTheme.colorScheme.error)
+                        Text(stringResource(R.string.add_place_required_field), color = MaterialTheme.colorScheme.error)
                     }
                 },
                 modifier = Modifier.fillMaxWidth(),
@@ -144,7 +146,7 @@ fun AddPlaceSheet(
                 onClick = onSaveClick,
                 modifier = Modifier.fillMaxWidth()
             ){
-                Text(text = "Lagre")
+                Text(text = stringResource(R.string.add_place_save_button))
             }
         }
     }
