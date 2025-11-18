@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.mittKart_s356228.data.Place
 import com.example.mittKart_s356228.repository.PlaceRepository
 import com.example.mittKart_s356228.ui.state.MapUiState
+import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -139,7 +140,7 @@ class MapViewModel(private val placeRepository: PlaceRepository): ViewModel() {
             try{
                 val geocoder = Geocoder(context, Locale.getDefault())
                 val addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
-                if(addresses?.isNotEmpty() == true){
+                if(addresses != null && addresses.isNotEmpty()){
                     addressText = addresses[0].getAddressLine(0)
                 }
             }catch(e: Exception){
@@ -168,4 +169,47 @@ class MapViewModel(private val placeRepository: PlaceRepository): ViewModel() {
             )
         }
     }
+
+
+    fun onSearchQueryChange(query: String){
+        _uiState.update{
+            currentState -> currentState.copy(
+                searchQuery = query
+            )
+        }
+    }
+
+    fun searchLocation(context: Context) {
+        if (_uiState.value.searchQuery.isBlank()) {
+            return
+        }
+
+        viewModelScope.launch {
+            try{
+                val geocoder = Geocoder(context, Locale.getDefault())
+                val addresses = geocoder.getFromLocationName(_uiState.value.searchQuery, 1)
+                if(addresses != null && addresses.isNotEmpty()){
+                    val location = addresses[0]
+                    val latLng = LatLng(location.latitude, location.longitude)
+
+                    _uiState.update{
+                        currentState -> currentState.copy(
+                            cameraUpdate = CameraPosition.fromLatLngZoom(latLng, 10f),
+                            searchQuery = ""
+                        )
+                    }
+                }else(
+                    Log.d("MapViewModel", "Could not find location for query: ${_uiState.value.searchQuery}")
+                )
+            }catch(e: Exception){
+                Log.e("MapViewModel", "Error searching for location", e)
+            }
+        }
+    }
+
+    fun resetCameraUpdate() {
+        _uiState.update { it.copy(cameraUpdate = null) }
+    }
 }
+
+

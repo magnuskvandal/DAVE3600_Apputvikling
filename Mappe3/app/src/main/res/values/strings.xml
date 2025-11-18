@@ -17,4 +17,6 @@
     <string name="address_label">Adresse</string>
     <string name="description_label">Beskrivelse</string>
     <string name="place_details_delete_button">Slett Sted</string>
+    <string name="search_bar_placeholder">Søk etter by</string>
+    <string name="search_icon_description">Søk</string>
 </resources>
