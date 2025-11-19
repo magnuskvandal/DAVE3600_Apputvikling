@@ -1,5 +1,6 @@
 package com.example.mittKart_s356228.ui.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,6 +14,7 @@ import androidx.compose.material.icons.outlined.Cancel
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.LocationOn
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -28,6 +30,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.mittKart_s356228.R
+import com.example.mittKart_s356228.ui.theme.MittKart_s356228Theme
 
 @Composable
 fun AddPlaceSheet(
@@ -44,34 +47,41 @@ fun AddPlaceSheet(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .fillMaxHeight(0.90f)
+            .fillMaxHeight(0.9f)
+            .background(MaterialTheme.colorScheme.surface)
     ){
         TextButton(
             onClick = onDismiss,
-            modifier = Modifier.align(Alignment.TopStart).padding(horizontal = 8.dp, vertical = 4.dp)
+            modifier = Modifier
+                .align(Alignment.TopStart)
+                .padding(horizontal = 8.dp, vertical = 4.dp)
         ){
             Text(
                 text = stringResource(R.string.close_sheet_button),
                 style = MaterialTheme.typography.bodyLarge,
-                fontWeight = FontWeight.ExtraBold
+                fontWeight = FontWeight.ExtraBold,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
 
         Text(
             text = stringResource(R.string.add_place_title),
             style = MaterialTheme.typography.titleLarge,
-            modifier = Modifier.align(Alignment.TopCenter).padding(top = 16.dp)
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.onSurface,
+            modifier = Modifier
+                .align(Alignment.TopCenter)
+                .padding(top = 16.dp)
         )
 
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 30.dp)
-                .padding(horizontal = 24.dp),
+                .padding(horizontal = 24.dp, vertical = 48.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(5.dp)
         ){
-            Spacer(modifier = Modifier.weight(0.5f))
+            Spacer(modifier = Modifier.weight(0.3f))
 
             if(address.isNotEmpty()){
                 Column(
@@ -81,13 +91,14 @@ fun AddPlaceSheet(
                     Text(
                         text = stringResource(R.string.add_place_selected_address),
                         style = MaterialTheme.typography.labelLarge,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        fontWeight = FontWeight.ExtraBold,
+                        color = MaterialTheme.colorScheme.primary
                     )
                     Text(
                         text = address,
                         style = MaterialTheme.typography.bodyLarge,
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Center,
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                 }
             }
@@ -97,12 +108,26 @@ fun AddPlaceSheet(
             OutlinedTextField(
                 value = name,
                 onValueChange = onNameChange,
-                label = { Text(stringResource(R.string.add_place_name_label)) },
-                leadingIcon = { Icon(imageVector = Icons.Outlined.LocationOn, contentDescription = stringResource(R.string.add_place_location_icon_description)) },
+                label = {
+                    Text(
+                        text = stringResource(R.string.add_place_name_label)
+                    )
+                        },
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Outlined.LocationOn,
+                        contentDescription = stringResource(R.string.add_place_location_icon_description),
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                },
                 trailingIcon = {
                     if(name.isNotEmpty()){
                         IconButton(onClick = { onNameChange("") }){ 
-                            Icon(imageVector = Icons.Outlined.Cancel, contentDescription = stringResource(R.string.add_place_cancel_icon_description))
+                            Icon(
+                                imageVector = Icons.Outlined.Cancel,
+                                contentDescription = stringResource(R.string.add_place_cancel_icon_description),
+                                tint = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
                         }
                     }
                 },
@@ -110,23 +135,32 @@ fun AddPlaceSheet(
                 isError = hasAttemptedSave && name.isBlank(),
                 supportingText = {
                     if(hasAttemptedSave && name.isBlank()){
-                        Text(text = stringResource(R.string.add_place_required_field), color = MaterialTheme.colorScheme.error)
+                        Text(
+                            text = stringResource(R.string.add_place_required_field),
+                            color = MaterialTheme.colorScheme.error)
                     }
                 },
                 modifier = Modifier.fillMaxWidth()
             )
 
-            Spacer(modifier = Modifier.height(5.dp))
-
             OutlinedTextField(
                 value = description,
                 onValueChange = onDescriptionChange,
                 label = { Text(stringResource(R.string.description_label)) },
-                leadingIcon = { Icon(imageVector = Icons.Outlined.Info, contentDescription = stringResource(R.string.add_place_info_icon_description)) },
+                leadingIcon = {
+                    Icon(imageVector = Icons.Outlined.Info,
+                        contentDescription = stringResource(R.string.add_place_info_icon_description),
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                              },
                 trailingIcon = {
                     if(description.isNotEmpty()){
                         IconButton(onClick = { onDescriptionChange("") }) {
-                            Icon(imageVector = Icons.Outlined.Cancel, contentDescription = stringResource(R.string.add_place_cancel_icon_description))
+                            Icon(
+                                imageVector = Icons.Outlined.Cancel,
+                                contentDescription = stringResource(R.string.add_place_cancel_icon_description),
+                                tint = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
                         }
                     }
                 },
@@ -134,7 +168,10 @@ fun AddPlaceSheet(
                 isError = hasAttemptedSave && description.isBlank(),
                 supportingText = {
                     if(hasAttemptedSave && description.isBlank()){
-                        Text(stringResource(R.string.add_place_required_field), color = MaterialTheme.colorScheme.error)
+                        Text(
+                            text = stringResource(R.string.add_place_required_field),
+                            color = MaterialTheme.colorScheme.error
+                        )
                     }
                 },
                 modifier = Modifier.fillMaxWidth(),
@@ -144,9 +181,17 @@ fun AddPlaceSheet(
 
             Button(
                 onClick = onSaveClick,
-                modifier = Modifier.fillMaxWidth()
+                colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primary),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 16.dp)
             ){
-                Text(text = stringResource(R.string.add_place_save_button))
+                Text(
+                    text = stringResource(R.string.add_place_save_button),
+                    style = MaterialTheme.typography.bodyLarge,
+                    fontWeight = FontWeight.ExtraBold,
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    )
             }
         }
     }
@@ -156,14 +201,16 @@ fun AddPlaceSheet(
 @Preview(showBackground = true)
 @Composable
 fun AddPlaceSheetPreview() {
-    AddPlaceSheet(
-        name = "",
-        description = "",
-        address = "Sverres gate 9, 0652 Oslo",
-        onNameChange = {},
-        onDescriptionChange = {},
-        onSaveClick = {},
-        onDismiss = {},
-        hasAttemptedSave = true
-    )
+    MittKart_s356228Theme{
+        AddPlaceSheet(
+            name = "dfsdf",
+            description = "sdfsf",
+            address = "Sverres gate 9, 0652 Oslo",
+            onNameChange = {},
+            onDescriptionChange = {},
+            onSaveClick = {},
+            onDismiss = {},
+            hasAttemptedSave = true
+        )
+    }
 }

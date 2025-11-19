@@ -1,5 +1,6 @@
 package com.example.mittKart_s356228.ui.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -23,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.mittKart_s356228.R
 import com.example.mittKart_s356228.data.Place
+import com.example.mittKart_s356228.ui.theme.MittKart_s356228Theme
 
 @Composable
 fun PlaceDetailsSheet(
@@ -34,7 +36,9 @@ fun PlaceDetailsSheet(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .fillMaxHeight(0.8f)
+            .fillMaxHeight(0.9f)
+            .background(MaterialTheme.colorScheme.surface)
+
     )
     {
         TextButton(
@@ -46,22 +50,29 @@ fun PlaceDetailsSheet(
             Text(
                 text = stringResource(R.string.close_sheet_button),
                 style = MaterialTheme.typography.bodyLarge,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.ExtraBold,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
+
+        Text(
+            text = place.name,
+            style = MaterialTheme.typography.titleLarge,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.onSurface,
+            modifier = Modifier
+                .align(Alignment.TopCenter)
+                .padding(top = 16.dp)
+        )
+
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 24.dp, vertical = 48.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(
-                text = place.name,
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 16.dp),
-                textAlign = TextAlign.Center
-            )
+            Spacer(modifier = Modifier.weight(0.3f))
+
             if(!place.address.isNullOrBlank()){
                 PlaceInfoRow(
                     label = stringResource(R.string.address_label),
@@ -78,11 +89,17 @@ fun PlaceDetailsSheet(
 
             Button(
                 onClick = onDeleteClick,
+                colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primary),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 16.dp)
             ) {
-                Text(stringResource(R.string.place_details_delete_button))
+                Text(
+                    text = stringResource(R.string.place_details_delete_button),
+                    style = MaterialTheme.typography.bodyLarge,
+                    fontWeight = FontWeight.ExtraBold,
+                    color = MaterialTheme.colorScheme.onPrimary,
+                )
             }
         }
     }
@@ -99,13 +116,13 @@ fun PlaceInfoRow(
         modifier = modifier.fillMaxWidth(),
     ){
         Column(
-            modifier = Modifier.padding(vertical = 8.dp)
+            modifier = Modifier.padding(vertical = 16.dp)
         ){
             Text(
                 text = label.uppercase(),
-                style = MaterialTheme.typography.labelSmall,
+                style = MaterialTheme.typography.labelMedium,
                 fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = MaterialTheme.colorScheme.primary
             )
             Spacer(modifier = Modifier.height(10.dp))
             Text(
@@ -121,26 +138,32 @@ fun PlaceInfoRow(
 @Preview(showBackground = true)
 @Composable
 fun PlaceDetailsSheetPreview() {
-    PlaceDetailsSheet(
-        place = Place(
-            id = 1,
-            name = "Test Place",
-            address = "123 Main Street",
-            description = "This is a test place.",
-            latitude = 1.0,
-            longitude = 2.0
-        ),
-        onDismiss = {},
-        onDeleteClick = {}
-    )
+    MittKart_s356228Theme{
+        PlaceDetailsSheet(
+            place = Place(
+                id = 1,
+                name = "Test Place",
+                address = "123 Main Street",
+                description = "This is a test place.",
+                latitude = 1.0,
+                longitude = 2.0
+            ),
+            onDismiss = {},
+            onDeleteClick = {}
+        )
+    }
+    
 }
 
 
 @Preview(showBackground = true)
 @Composable
-fun placeInfoRowPreview() {
-    PlaceInfoRow(
-        label = "Test Label",
-        value = "Test Value"
-    )
+fun PlaceInfoRowPreview() {
+    MittKart_s356228Theme{
+        PlaceInfoRow(
+            label = "Test Label",
+            value = "Test Value"
+        )
+    }
+
 }
