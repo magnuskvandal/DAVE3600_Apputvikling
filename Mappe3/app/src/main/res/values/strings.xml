@@ -19,4 +19,6 @@
     <string name="place_details_delete_button">Slett Sted</string>
     <string name="search_bar_placeholder">Søk etter by</string>
     <string name="search_icon_description">Søk</string>
+    <string name="zoom_in_button_description">Zoom inn</string>
+    <string name="zoom_out_button_description">Zoom ut</string>">
 </resources>

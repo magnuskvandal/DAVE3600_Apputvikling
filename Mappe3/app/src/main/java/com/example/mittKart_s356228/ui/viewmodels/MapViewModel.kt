@@ -61,7 +61,7 @@ class MapViewModel(private val placeRepository: PlaceRepository): ViewModel() {
         }
     }
 
-    fun dismissPlaceDetailsSheet(){
+    fun onPlaceDetailsSheetDismissed(){
         _uiState.update {
             currentState -> currentState.copy(
                 selectedPlace = null,
@@ -101,7 +101,7 @@ class MapViewModel(private val placeRepository: PlaceRepository): ViewModel() {
                     getPlaces()
                 }
             }
-            dismissAddPlaceSheet()
+            onAddPlaceSheetDismissed()
         }
     }
 
@@ -114,7 +114,7 @@ class MapViewModel(private val placeRepository: PlaceRepository): ViewModel() {
                     getPlaces()
                 }
             }
-            dismissPlaceDetailsSheet()
+            onPlaceDetailsSheetDismissed()
         }
     }
 
@@ -157,7 +157,7 @@ class MapViewModel(private val placeRepository: PlaceRepository): ViewModel() {
         }
     }
 
-    fun dismissAddPlaceSheet() {
+    fun onAddPlaceSheetDismissed() {
         _uiState.update {
             currentState -> currentState.copy(
                 showAddPlaceSheet = false,
