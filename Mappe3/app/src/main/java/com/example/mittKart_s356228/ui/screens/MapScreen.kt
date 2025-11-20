@@ -67,7 +67,6 @@ fun MapScreen(
             viewModel.resetCameraUpdate()
         }
     }
-
     Scaffold(){
         innerPadding ->
 
@@ -105,7 +104,6 @@ fun MapScreen(
                     .padding(WindowInsets.navigationBars.asPaddingValues())
                     .padding(end = 20.dp, bottom = 30.dp)
             ){
-
                 SmallFloatingActionButton(
                     onClick = {
                         scope.launch{
@@ -122,7 +120,6 @@ fun MapScreen(
                         modifier = Modifier.size(30.dp)
                     )
                 }
-
                 SmallFloatingActionButton(
                     onClick = {
                         scope.launch{
@@ -140,16 +137,17 @@ fun MapScreen(
                     )
                 }
             }
-
             MapSearchBar(
                 modifier = Modifier
                     .align(Alignment.TopCenter)
                     .padding(WindowInsets.statusBars.asPaddingValues())
-                    .padding(top = 15.dp)
-                    .padding(horizontal = 15.dp),
+                    .padding(top = 20.dp)
+                    .padding(horizontal = 10.dp),
                 query = uiState.searchQuery,
                 onQueryChange = { input -> viewModel.onSearchQueryChange(input)},
-                onSearch = { viewModel.searchLocation(context)}
+                onSearch = { viewModel.searchLocation(context)},
+                searchZoomLevel = uiState.searchZoomLevel,
+                onZoomLevelChange = { input -> viewModel.setSearchZoomLevel(input)}
             )
 
             if (uiState.showAddPlaceSheet) {

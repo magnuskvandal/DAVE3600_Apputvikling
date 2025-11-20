@@ -15,10 +15,16 @@
     <string name="delete_dialog_confirm_button">Slett</string>
     <string name="delete_dialog_dismiss_button">Avbryt</string>
     <string name="address_label">Adresse</string>
+    <string name="country_label">Land</string>
+    <string name="city_label">By</string>
+    <string name="place_label">Sted</string>
     <string name="description_label">Beskrivelse</string>
     <string name="place_details_delete_button">Slett Sted</string>
-    <string name="search_bar_placeholder">Søk etter by</string>
+    <string name="search_bar_placeholder_country">Søk etter land</string>
+    <string name="search_bar_placeholder_city">Søk etter by</string>
+    <string name="search_bar_placeholder_place_or_address">Søk etter sted eller adresse</string>
     <string name="search_icon_description">Søk</string>
     <string name="zoom_in_button_description">Zoom inn</string>
     <string name="zoom_out_button_description">Zoom ut</string>">
+    <string name="filter_check_icon_description">Valgt filter</string>
 </resources>

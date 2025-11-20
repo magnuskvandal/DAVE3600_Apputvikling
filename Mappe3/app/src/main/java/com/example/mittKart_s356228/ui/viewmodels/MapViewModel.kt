@@ -179,6 +179,14 @@ class MapViewModel(private val placeRepository: PlaceRepository): ViewModel() {
         }
     }
 
+    fun setSearchZoomLevel(level: Float){
+        _uiState.update{
+                currentState -> currentState.copy(
+            searchZoomLevel = level
+                )
+        }
+    }
+
     fun searchLocation(context: Context) {
         if (_uiState.value.searchQuery.isBlank()) {
             return
@@ -194,7 +202,7 @@ class MapViewModel(private val placeRepository: PlaceRepository): ViewModel() {
 
                     _uiState.update{
                         currentState -> currentState.copy(
-                            cameraUpdate = CameraPosition.fromLatLngZoom(latLng, 10f),
+                            cameraUpdate = CameraPosition.fromLatLngZoom(latLng, _uiState.value.searchZoomLevel),
                             searchQuery = ""
                         )
                     }

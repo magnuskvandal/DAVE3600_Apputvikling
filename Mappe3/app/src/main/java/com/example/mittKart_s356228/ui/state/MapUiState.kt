@@ -16,5 +16,6 @@ data class MapUiState(
     val showDetailsSheet: Boolean = false,
     val showDeleteConfirmation: Boolean = false,
     val searchQuery: String = "",
-    val cameraUpdate: CameraPosition? = null
+    val cameraUpdate: CameraPosition? = null,
+    val searchZoomLevel: Float = 10f
 )
