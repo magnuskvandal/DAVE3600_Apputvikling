@@ -55,23 +55,23 @@ fun PlaceDetailsSheet(
             )
         }
 
-        Text(
-            text = place.name,
-            style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onSurface,
-            modifier = Modifier
-                .align(Alignment.TopCenter)
-                .padding(top = 16.dp)
-        )
-
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 24.dp, vertical = 48.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Spacer(modifier = Modifier.weight(0.3f))
+            Spacer(modifier = Modifier.weight(0.1f))
+            Text(
+                text = place.name,
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.onSurface,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(horizontal = 10.dp)
+            )
+
+            Spacer(modifier = Modifier.weight(0.2f))
 
             if(!place.address.isNullOrBlank()){
                 PlaceInfoRow(
