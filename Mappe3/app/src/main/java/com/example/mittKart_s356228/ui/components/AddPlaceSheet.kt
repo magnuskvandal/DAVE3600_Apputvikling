@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Cancel
 import androidx.compose.material.icons.outlined.Info
@@ -42,6 +44,9 @@ fun AddPlaceSheet(
     hasAttemptedSave: Boolean,
     modifier: Modifier = Modifier,
 ){
+
+    val scrollState = rememberScrollState()
+
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -75,11 +80,12 @@ fun AddPlaceSheet(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 24.dp, vertical = 48.dp),
+                .padding(horizontal = 24.dp, vertical = 48.dp)
+                .verticalScroll(scrollState),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(5.dp)
         ){
-            Spacer(modifier = Modifier.weight(0.3f))
+            Spacer(modifier = Modifier.height(60.dp))
 
             if(address.isNotEmpty()){
                 Column(
@@ -105,7 +111,9 @@ fun AddPlaceSheet(
 
             OutlinedTextField(
                 value = name,
-                onValueChange = onNameChange,
+                onValueChange = {
+                    input -> if(input.length <= 70) onNameChange(input)
+                },
                 label = {
                     Text(
                         text = stringResource(R.string.add_place_name_label)
@@ -175,7 +183,7 @@ fun AddPlaceSheet(
                 modifier = Modifier.fillMaxWidth(),
             )
 
-            Spacer(modifier = Modifier.weight(1f))
+            Spacer(modifier = Modifier.height(10.dp))
 
             Button(
                 onClick = onSaveClick,

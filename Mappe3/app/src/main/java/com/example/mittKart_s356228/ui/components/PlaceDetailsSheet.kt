@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
@@ -31,6 +33,9 @@ fun PlaceDetailsSheet(
     onDismiss: () -> Unit,
     onDeleteClick: () -> Unit
     ){
+
+    val scrollSate = rememberScrollState()
+
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -56,10 +61,11 @@ fun PlaceDetailsSheet(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 24.dp, vertical = 48.dp),
+                .padding(horizontal = 24.dp, vertical = 48.dp)
+                .verticalScroll(scrollSate),
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Spacer(modifier = Modifier.weight(0.1f))
+            Spacer(modifier = Modifier.height(40.dp))
             Text(
                 text = place.name,
                 style = MaterialTheme.typography.titleLarge,
@@ -68,8 +74,7 @@ fun PlaceDetailsSheet(
                 textAlign = TextAlign.Center,
                 modifier = Modifier.padding(horizontal = 10.dp)
             )
-
-            Spacer(modifier = Modifier.weight(0.2f))
+            Spacer(modifier = Modifier.height(40.dp))
 
             if(!place.address.isNullOrBlank()){
                 PlaceInfoRow(
@@ -83,7 +88,7 @@ fun PlaceDetailsSheet(
                 value = place.description
             )
 
-            Spacer(modifier = Modifier.weight(1f))
+            Spacer(modifier = Modifier.height(30.dp))
 
             Button(
                 onClick = onDeleteClick,
