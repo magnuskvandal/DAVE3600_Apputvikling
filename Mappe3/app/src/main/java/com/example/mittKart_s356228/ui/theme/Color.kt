@@ -2,13 +2,13 @@ package com.example.mittKart_s356228.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val AppPrimary = Color(0xFF0061A4)
+val AppPrimary = Color(0xFF005085)
 val AppOnPrimary = Color(0xFFFFFFFF)
 val AppBackground = Color(0xFFFDFCFF)
 val AppOnBackground = Color(0xFF1A1C1E)
 val AppSurface = Color(0xFFFDFCFF)
 val AppOnSurface = Color(0xFF1A1C1E)
-val AppOnSurfaceVariant = Color(0xFF3F5F85)
+val AppOnSurfaceVariant = Color(0xFF253A52)
 val AppError = Color(0xFFBA1A1A)
 val AppOnError = Color(0xFFFFFFFF)
 

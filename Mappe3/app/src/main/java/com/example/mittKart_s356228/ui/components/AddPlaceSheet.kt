@@ -27,10 +27,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.mittKart_s356228.R
-import com.example.mittKart_s356228.ui.theme.MittKart_s356228Theme
 
 @Composable
 fun AddPlaceSheet(
@@ -194,23 +192,5 @@ fun AddPlaceSheet(
                     )
             }
         }
-    }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun AddPlaceSheetPreview() {
-    MittKart_s356228Theme{
-        AddPlaceSheet(
-            name = "dfsdf",
-            description = "sdfsf",
-            address = "Sverres gate 9, 0652 Oslo",
-            onNameChange = {},
-            onDescriptionChange = {},
-            onSaveClick = {},
-            onDismiss = {},
-            hasAttemptedSave = true
-        )
     }
 }

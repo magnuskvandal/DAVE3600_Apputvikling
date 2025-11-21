@@ -20,11 +20,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.mittKart_s356228.R
 import com.example.mittKart_s356228.data.Place
-import com.example.mittKart_s356228.ui.theme.MittKart_s356228Theme
 
 @Composable
 fun PlaceDetailsSheet(
@@ -133,37 +131,4 @@ fun PlaceInfoRow(
         }
         HorizontalDivider(color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f))
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PlaceDetailsSheetPreview() {
-    MittKart_s356228Theme{
-        PlaceDetailsSheet(
-            place = Place(
-                id = 1,
-                name = "Test Place",
-                address = "123 Main Street",
-                description = "This is a test place.",
-                latitude = 1.0,
-                longitude = 2.0
-            ),
-            onDismiss = {},
-            onDeleteClick = {}
-        )
-    }
-    
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun PlaceInfoRowPreview() {
-    MittKart_s356228Theme{
-        PlaceInfoRow(
-            label = "Test Label",
-            value = "Test Value"
-        )
-    }
-
 }

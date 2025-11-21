@@ -87,10 +87,14 @@ class MapViewModel(private val placeRepository: PlaceRepository): ViewModel() {
 
         viewModelScope.launch {
             _uiState.value.newPlaceLatLng?.let{ latLng ->
+                val safeName = _uiState.value.newPlaceName.replace("'", "’")
+                val safeDescription = _uiState.value.newPlaceDescription.replace("'", "’")
+                val safeAddress = _uiState.value.newPlaceAddress.replace("'", "’")
+
                 val newPlace = Place(
-                    name = _uiState.value.newPlaceName,
-                    description = _uiState.value.newPlaceDescription,
-                    address = if (_uiState.value.newPlaceAddress.isBlank()) null else _uiState.value.newPlaceAddress,
+                    name = safeName,
+                    description = safeDescription,
+                    address = if (safeAddress.isBlank()) null else safeAddress,
                     latitude = latLng.latitude,
                     longitude = latLng.longitude
                 )
