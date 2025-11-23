@@ -83,6 +83,8 @@ fun PlaceDetailsSheet(
                 )
             }
 
+            Spacer(modifier = Modifier.height(5.dp))
+
             PlaceInfoRow(
                 label = stringResource(R.string.description_label),
                 value = place.description
@@ -123,7 +125,7 @@ fun PlaceInfoRow(
         ){
             Text(
                 text = label.uppercase(),
-                style = MaterialTheme.typography.labelMedium,
+                style = MaterialTheme.typography.labelLarge,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.primary
             )

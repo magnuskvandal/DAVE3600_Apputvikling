@@ -40,7 +40,7 @@ fun DeleteConfirmationDialog(
         text = {
             Text(
                 text = stringResource(R.string.delete_dialog_message, placeName),
-                color = MaterialTheme.colorScheme.onSurface
+                color = MaterialTheme.colorScheme.onSurface,
             )
         },
         onDismissRequest = onDismiss,
