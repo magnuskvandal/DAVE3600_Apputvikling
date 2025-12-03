@@ -1,7 +1,9 @@
 package com.example.mittKart_s356228.ui.viewmodels
 
 import android.content.Context
+import android.location.Address
 import android.location.Geocoder
+import android.os.Build
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,11 +12,13 @@ import com.example.mittKart_s356228.repository.PlaceRepository
 import com.example.mittKart_s356228.ui.state.MapUiState
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.Locale
 
 class MapViewModel(private val placeRepository: PlaceRepository): ViewModel() {
@@ -139,24 +143,67 @@ class MapViewModel(private val placeRepository: PlaceRepository): ViewModel() {
     }
 
     fun prepareNewPlace(latLng: LatLng, context: Context) {
-        viewModelScope.launch {
-            var addressText: String = ""
-            try{
-                val geocoder = Geocoder(context, Locale.getDefault())
-                val addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
-                if(addresses != null && addresses.isNotEmpty()){
-                    addressText = addresses[0].getAddressLine(0)
-                }
-            }catch(e: Exception){
-                Log.e("MapViewModel", "Error getting address", e)
-            }
+        val geocoder = Geocoder(context, Locale.getDefault())
+        var addressText: String = ""
 
-            _uiState.update {
-                currentState -> currentState.copy(
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+            geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1, object: Geocoder.GeocodeListener{
+
+                override fun onGeocode(addresses: MutableList<Address>){
+                    if(addresses.isNotEmpty()){
+                        addressText = addresses[0].getAddressLine(0)
+                    }
+
+                    viewModelScope.launch {
+                        _uiState.update {
+                                currentState -> currentState.copy(
+                            showAddPlaceSheet = true,
+                            newPlaceLatLng = latLng,
+                            newPlaceAddress = addressText
+                        )
+                        }
+                    }
+
+                }
+                override fun onError(errorMessage: String?){
+                    Log.e("MapViewModel", "Geocoder error (API >= 33): $errorMessage")
+
+                    viewModelScope.launch {
+                        _uiState.update{
+                            currentState -> currentState.copy(
+                                showAddPlaceSheet = true,
+                                newPlaceLatLng = latLng,
+                                newPlaceAddress = ""
+                            )
+                        }
+                    }
+                }
+            })
+        }
+
+        else{
+            viewModelScope.launch {
+                try{
+
+                    val addresses = withContext(Dispatchers.IO){
+                        @Suppress("DEPRECATION")
+                        geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
+                    }
+
+                    if(addresses != null && addresses.isNotEmpty()){
+                        addressText = addresses[0].getAddressLine(0)
+                    }
+                }catch(e: Exception){
+                    Log.e("MapViewModel", "Geocoder error (API < 33): ${e.message}")
+                }
+
+                _uiState.update {
+                        currentState -> currentState.copy(
                     showAddPlaceSheet = true,
                     newPlaceLatLng = latLng,
                     newPlaceAddress = addressText
                 )
+                }
             }
         }
     }
@@ -195,26 +242,57 @@ class MapViewModel(private val placeRepository: PlaceRepository): ViewModel() {
         if (_uiState.value.searchQuery.isBlank()) {
             return
         }
+        val geocoder = Geocoder(context, Locale.getDefault())
 
-        viewModelScope.launch {
-            try{
-                val geocoder = Geocoder(context, Locale.getDefault())
-                val addresses = geocoder.getFromLocationName(_uiState.value.searchQuery, 1)
-                if(addresses != null && addresses.isNotEmpty()){
-                    val location = addresses[0]
-                    val latLng = LatLng(location.latitude, location.longitude)
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+            geocoder.getFromLocationName(_uiState.value.searchQuery, 1, object : Geocoder.GeocodeListener{
 
-                    _uiState.update{
-                        currentState -> currentState.copy(
+                override fun onGeocode(addresses: MutableList<Address>){
+                    if(addresses.isNotEmpty()) {
+                        val location = addresses[0]
+                        val latLng = LatLng(location.latitude, location.longitude)
+
+                        viewModelScope.launch {
+                            _uiState.update { currentState ->
+                                currentState.copy(
+                                    cameraUpdate = CameraPosition.fromLatLngZoom(latLng, _uiState.value.searchZoomLevel),
+                                    searchQuery = ""
+                                )
+                            }
+                        }
+                    }else{
+                        Log.d("MapViewModel", "Could not find location for query: ${_uiState.value.searchQuery}")
+                    }
+                }
+
+                override fun onError(errorMessage: String?){
+                    Log.e("MapViewModel", "Geocoder search error (API >= 33) for query ${_uiState.value.searchQuery}: $errorMessage")
+                }
+            })
+        }else{
+            viewModelScope.launch {
+                try{
+                    val addresses = withContext(Dispatchers.IO){
+                        @Suppress("DEPRECATION")
+                        geocoder.getFromLocationName(_uiState.value.searchQuery, 1)
+                    }
+
+                    if(addresses != null && addresses.isNotEmpty()){
+                        val location = addresses[0]
+                        val latLng = LatLng(location.latitude, location.longitude)
+
+                        _uiState.update{
+                                currentState -> currentState.copy(
                             cameraUpdate = CameraPosition.fromLatLngZoom(latLng, _uiState.value.searchZoomLevel),
                             searchQuery = ""
                         )
+                        }
+                    }else{
+                        Log.d("MapViewModel", "Could not find location for query: ${_uiState.value.searchQuery}")
                     }
-                }else(
-                    Log.d("MapViewModel", "Could not find location for query: ${_uiState.value.searchQuery}")
-                )
-            }catch(e: Exception){
-                Log.e("MapViewModel", "Error searching for location", e)
+                }catch(e: Exception){
+                    Log.e("MapViewModel", "Geocoder search error (API < 33) for query ${_uiState.value.searchQuery}: ${e.message}")
+                }
             }
         }
     }
