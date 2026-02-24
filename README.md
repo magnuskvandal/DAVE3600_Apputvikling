@@ -4,5 +4,5 @@ Tre native Android-applikasjoner utviklet med Kotlin og Jetpack Compose i forbin
 
 - [Mappe1 – Addisjonsspill for barn](Mappe1)
 - [Mappe2 – Bursdagsassistent](Mappe2)
-- [Mappe3 – Mappe 3-app](Mappe3)
+- [Mappe3 – Kartbasert favorittstedsapplikasjon](Mappe3)
 
