@@ -7,10 +7,20 @@ Spillet har 15 regnestykker tilgjengelig, som ligger i en xml fil under res/valu
 Applikasjonen støtter både norsk og tysk språk.
 ## Skjermbilder og demo
 
-- [Demo av spill](screenshots/mattespill.mp4)
 
-| Startskjerm | Om spillet | Preferanser |
-|-------------|------------|-------------|
-| <img src="screenshots/startskjerm.png" width="300"/> | <img src="screenshots/info.png" width="300"/> | <img src="screenshots/preferanser.png" width="300"/> |
+
+| **Startskjerm** | **Om spillet** | **Preferanser** |
+|-----------------|----------------|-----------------|
+| <img src="screenshots/startskjerm.png" width="300"/> | <img src="screenshots/info.png" width="300"/> | <img src="screenshots/preferanser.png" width="300"/> | 
+
+**Demo av spill**
+
+https://github.com/user-attachments/assets/d653b052-f828-4905-aa78-63b13d2c239d 
+
+
+
+
+
+
 
 
