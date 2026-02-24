@@ -5,29 +5,11 @@ Appen har en SMS-tjeneste som automatisk sender bursdagshilsener til venner som 
 SMS-tjenesten kan aktiveres/deaktiveres i preferanser. Der kan også standardmelding som skal sendes endres.
 
 ## Skjermbilder
-<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: flex-start;">
-  <div style="width: 320px; text-align: center;">
-    <h3>Startkjerm</h3>
-    <img src="screenshots/venneliste.png" width="300"/>
-  </div>
-  
-  <div style="width: 320px; text-align: center;">
-    <h3>Registrering</h3>
-    <img src="screenshots/registrering.png" width="300"/>
-  </div>
+| **Startskjerm** | **Registrering** | **Vennedetaljer** |
+|-----------------|------------------|-------------------|
+| <img src="screenshots/venneliste.png" width="300"/> | <img src="screenshots/registrering.png" width="300"/> | <img src="screenshots/detaljer.png" width="300"/> |
 
-  <div style="width: 320px; text-align: center;">
-    <h3>Vennedetaljer</h3>
-    <img src="screenshots/detaljer.png" width="300"/>
-  </div>
+| **Meny** | **Preferanser** |
+|----------|------------------|
+| <img src="screenshots/meny.png" width="300"/> | <img src="screenshots/preferanser.png" width="300"/> |
 
-  <div style="width: 320px; text-align: center;">
-    <h3>Meny</h3>
-    <img src="screenshots/meny.png" width="300"/>
-  </div>
-
-  <div style="width: 320px; text-align: center;">
-    <h3>Preferanser</h3>
-    <img src="screenshots/preferanser.png" width="300"/>
-  </div>
-</div>
