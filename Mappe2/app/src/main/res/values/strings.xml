@@ -27,6 +27,8 @@
     <string name="group_expanded_icon_description">Skjul gruppe</string>
     <string name="group_collapsed_icon_description">Vis gruppe</string>
     <string name="form_field_required">Dette feltet er påkrevd</string>
+    <string name= "form_error_invalid_phone_number">Nummeret må bestå av 8-12 siffer</string>
+    <string name= "form_error_invalid_date">Datoen kan ikke være i fremtiden</string>
     <string name ="form_title_edit_friend">Rediger venn</string>
     <string name ="form_title_add_friend">Legg til venn</string>
     <string name ="form_label_firstname">Fornavn</string>

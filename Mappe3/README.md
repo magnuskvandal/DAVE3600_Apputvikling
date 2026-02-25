@@ -4,5 +4,12 @@ En kartapplikasjon som lar brukeren registrere sine favorittsteder i et interakt
 Androids Geocoder benyttes til å oversette mellom koordinater og adresser i søk og registrering av steder. All datautveksling mellom applikasjonen og den eksterne MariaDB-databasen skjer via en webtjeneste. Denne håndterer lagring, henting og sletting av steder ved bruk av Retrofit, mens Moshi brukes for å konvertere mellom JSON-data og Kotlin-objekter. Databasen er hostet på OsloMet sine servere, og tilkobling krever VPN utenfor OsloMet sitt nettverk.
 
 ## Skjermbilder 
+| **Kart med favorittsteder markert** | **Registrering av sted** | **Stedsinformasjon** |
+|-------------------------------------|--------------------------|----------------------|
+| <img src="screenshots/map.png" width="300"/> | <img src="screenshots/addPlace.png" width="300"/> | <img src="screenshots/placeDetails.png" width="300"/> |
 
-**Kommer**
+| **Søkefelt** |
+|--------------|
+| <img src="screenshots/searchBarCountry.png" width="300"/> <br/>
+<img src="screenshots/searchBarCity.png" width="300"/> <br/>
+<img src="screenshots/searchBarPlaceOrAddress.png" width="300"/> |

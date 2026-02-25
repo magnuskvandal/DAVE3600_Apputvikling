@@ -71,14 +71,20 @@ class FriendFormViewModel(
     }
 
     fun updatePhoneNumber(phoneNumber: String){
-        if(phoneNumber.all{phoneNum -> phoneNum.isDigit() }){
-            _uiState.update{
-                currentState -> currentState.copy(
-                    phoneNumber = phoneNumber,
-                    phoneNumberError = false
-                )
-            }
+        _uiState.update{
+            currentState -> currentState.copy(
+                phoneNumber = phoneNumber,
+                phoneNumberError = false
+            )
         }
+    }
+
+    private fun isPhoneNumberValid(phoneNumber: String): Boolean{
+        val isNotBlank = phoneNumber.isNotBlank()
+        val isOnlyDigits = phoneNumber.all{ char -> char.isDigit() }
+        val isLengthValid = phoneNumber.length in 8.. 12
+
+        return isNotBlank && isOnlyDigits && isLengthValid
     }
 
     fun updateDateOfBirth(dateOfBirth: LocalDate?){
@@ -90,23 +96,33 @@ class FriendFormViewModel(
                 )
             }
         }
-
     }
 
+    private fun isDateOfBirthValid(dateOfBirth: LocalDate?): Boolean{
+        val isNull = dateOfBirth == null
+        var isFutureDate = false
+
+        if(!isNull){
+            isFutureDate = dateOfBirth.isAfter(LocalDate.now())
+        }
+
+        return !isFutureDate && !isNull
+    }
 
     fun saveFriend(onSuccess: () -> Unit){
         val currentState = _uiState.value
         val firstNameBlank = currentState.firstName.isBlank()
         val lastNameBlank = currentState.lastName.isBlank()
-        val phoneNumberBlank = currentState.phoneNumber.isBlank()
-        val dateOfBirthNull = currentState.dateOfBirth == null
+        val phoneNumberError = !isPhoneNumberValid(currentState.phoneNumber)
+        val dateOfBirthNull = !isDateOfBirthValid(currentState.dateOfBirth)
 
-        if(firstNameBlank || lastNameBlank || phoneNumberBlank || dateOfBirthNull){
+
+        if(firstNameBlank || lastNameBlank || phoneNumberError || dateOfBirthNull){
             _uiState.update{
                 current -> current.copy(
                     firstNameError = firstNameBlank,
                     lastNameError = lastNameBlank,
-                    phoneNumberError = phoneNumberBlank,
+                    phoneNumberError = phoneNumberError,
                     dateOfBirthError = dateOfBirthNull
                 )
             }
@@ -119,7 +135,7 @@ class FriendFormViewModel(
                 firstName = currentState.firstName.trim(),
                 lastName = currentState.lastName.trim(),
                 phoneNumber = currentState.phoneNumber,
-                dateOfBirth = currentState.dateOfBirth
+                dateOfBirth = currentState.dateOfBirth!!
             )
             if(currentState.id == 0){
                 friendRepository.insertFriend(friend = friendToSave)

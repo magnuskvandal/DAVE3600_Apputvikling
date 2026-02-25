@@ -141,7 +141,11 @@ fun FriendFormScreen(
                 isError = uiState.phoneNumberError,
                 supportingText = {
                     if(uiState.phoneNumberError){
-                        Text(text = textFieldErrorMsg, color = MaterialTheme.colorScheme.error)
+                        val errorText = when {
+                            uiState.phoneNumber.isBlank() -> textFieldErrorMsg
+                            else -> stringResource(R.string.form_error_invalid_phone_number)
+                        }
+                        Text(text = errorText, color = MaterialTheme.colorScheme.error)
                     }
                 },
                 colors = textFieldColors
@@ -163,7 +167,11 @@ fun FriendFormScreen(
                 isError = uiState.dateOfBirthError,
                 supportingText = {
                     if(uiState.dateOfBirthError){
-                        Text(text = textFieldErrorMsg, color = MaterialTheme.colorScheme.error)
+                        val errorText = when {
+                            uiState.dateOfBirth == null -> textFieldErrorMsg
+                            else -> stringResource(R.string.form_error_invalid_date)
+                        }
+                        Text(text = errorText, color = MaterialTheme.colorScheme.error)
                     }
                 },
                 colors = OutlinedTextFieldDefaults.colors(
