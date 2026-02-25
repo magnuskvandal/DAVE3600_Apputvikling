@@ -15,7 +15,9 @@ Applikasjonen støtter både norsk og tysk språk.
 
 **Demo av spill**
 
-https://github.com/user-attachments/assets/d653b052-f828-4905-aa78-63b13d2c239d 
+https://github.com/user-attachments/assets/348388e4-067f-44f1-9078-a0f3407e2692
+
+
 
 
 
