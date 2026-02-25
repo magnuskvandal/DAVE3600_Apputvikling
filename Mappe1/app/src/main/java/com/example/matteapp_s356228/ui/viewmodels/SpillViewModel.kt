@@ -109,7 +109,6 @@ class SpillViewModel(application: Application): AndroidViewModel(application) {
 
         val korrektSvar = aktivSpilløktOppgaver[gjeldendeOppgaveIndeks].svar // korrekt svar for gjeldende oppgave
         val brukersvarInt = _uiState.value.brukersvar.toIntOrNull() // konverterer brukersvar til Int
-        val sisteOppgave = gjeldendeOppgaveIndeks == aktivSpilløktOppgaver.size - 1 // sjekk om dette er siste oppgave
         val erRett = korrektSvar == brukersvarInt
 
 
@@ -118,7 +117,6 @@ class SpillViewModel(application: Application): AndroidViewModel(application) {
             rettSvar = erRett,
             svarSjekket = true,
             score = if (erRett) gjeldendeState.score + 1 else gjeldendeState.score, // øker score hvis svaret er rett
-            spillstatus = if(sisteOppgave) Spillstatus.FERDIG else gjeldendeState.spillstatus, // oppdaterer spillstatus til FERDIG hvis dette var siste oppgave
             korrektSvar = if(!erRett) korrektSvar.toString() else null // viser korrekt svar hvis brukersvar var feil
             )
         })

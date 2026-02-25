@@ -10,6 +10,6 @@ SMS-tjenesten kan aktiveres/deaktiveres i preferanser. Der kan også standardmel
 | <img src="screenshots/venneliste.png" width="300"/> | <img src="screenshots/registrering.png" width="300"/> | <img src="screenshots/detaljer.png" width="300"/> |
 
 | **Meny** | **Preferanser** |
-|----------|------------------|
+|----------|-----------------|
 | <img src="screenshots/meny.png" width="300"/> | <img src="screenshots/preferanser.png" width="300"/> |
 

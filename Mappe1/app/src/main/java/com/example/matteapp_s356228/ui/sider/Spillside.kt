@@ -112,18 +112,13 @@ fun Spillside(
                 GenerellKnapp(
                     modifier = Modifier.fillMaxWidth(),
                     // endre tekst og funksjon basert på spilltilstand
-                    tekst = if(sisteOppgave && !spilletFerdig){
-                        stringResource(R.string.sjekkSvar)
-                    }else if(spilletFerdig){
+                    tekst =  if(spilletFerdig){
                         stringResource(R.string.ja)
                     }else{
                         stringResource(R.string.sjekkSvar)
                     },
-                    //
                     onClick = {
-                        if(sisteOppgave && !spilletFerdig){
-                            viewModel.sjekkSvar()
-                        }else if(spilletFerdig){
+                        if(spilletFerdig){
                             viewModel.startNyttSpill()
                         }else{
                             viewModel.sjekkSvar()
@@ -138,21 +133,24 @@ fun Spillside(
                 )
                 Spacer(modifier = Modifier.height(12.dp))
 
-                // knapp for å hoppe over oppgave, gå til neste oppgave eller avslutte spill
+                // knapp for å hoppe over oppgave, gå til neste eller avslutte spill
                 GenerellKnapp(
                     modifier = Modifier.fillMaxWidth(),
                     // endre tekst og funksjon basert på spilltilstand
-                    tekst = if(spilletFerdig){
+                    tekst = if (spilletFerdig) {
                         stringResource(R.string.nei)
-                    }else{
-                        if(uiState.svarSjekket) stringResource(R.string.neste) else stringResource(R.string.hoppOver)
+                    } else if (uiState.svarSjekket) {
+                        if (sisteOppgave) stringResource(R.string.seResultat) else stringResource(R.string.neste)
+                    } else {
+                        stringResource(R.string.hoppOver)
                     },
                     onClick = {
-                        if(sisteOppgave && !spilletFerdig){
-                            viewModel.avsluttSpill()
-                        }else if(spilletFerdig){
+                        if(spilletFerdig){
                             onNavigerTilbake()
-                        }else{
+                        }else if(sisteOppgave){
+                            viewModel.avsluttSpill()
+                        }
+                        else{
                             viewModel.nesteOppgave()
                         }
                     },
